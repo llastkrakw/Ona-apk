@@ -1,3 +1,140 @@
 <resources>
     <string name="app_name">Ona</string>
+    <string name="copyright">copyright ona 2020</string>
+
+    <!--
+       onboarding1
+    -->
+
+    <string name="ob1_title">Shorten and Secured Links </string>
+    <string name="ob1_content">
+        Customize your links to make them
+        professional, intuitive and easily
+        interpretable. We'll take care of
+        notifying you if a link is safe for you.
+    </string>
+
+    <!--
+   onboarding2
+     -->
+
+    <string name="ob2_title">Shorten and Secured Links </string>
+    <string name="ob2_content">
+        Customize your links to make them
+        professional, intuitive and easily
+        interpretable. We'll take care of
+        notifying you if a link is safe for you.
+    </string>
+
+    <!--
+       onboarding3
+    -->
+
+    <string name="ob3_title">Shorten and Secured Links </string>
+    <string name="ob3_content">
+        Customize your links to make them
+        professional, intuitive and easily
+        interpretable. We'll take care of
+        notifying you if a link is safe for you.
+    </string>
+
+    <!--
+       onboarding4
+    -->
+
+    <string name="ob4_title">Shorten and Secured Links </string>
+    <string name="ob4_content">
+        Customize your links to make them
+        professional, intuitive and easily
+        interpretable. We'll take care of
+        notifying you if a link is safe for you.
+    </string>
+
+    <string name="skip">Skip</string>
+    <string name="go">GO !</string>
+
+    <!--
+        main
+    -->
+
+    <string name="search_all">Search All</string>
+    <string name="search">Search</string>
+    <string name="all">All >></string>
+    <string name="recent_link">Recent links</string>
+    <string name="recent_collection">Recent collections</string>
+
+
+    <!--
+        Collection
+    -->
+
+    <string name="visibility">Visibility</string>
+    <string name="like">Likes</string>
+    <string name="create_at">Created At</string>
+    <string name="box_add_new_collection">Add new collection</string>
+    <string name="box_add_new_collection_title">You have more interested collection ?</string>
+
+    <!--
+       Links
+    -->
+
+    <string name="go_to_res">Go to resource</string>
+    <string name="box_add_new_link">Add new link</string>
+    <string name="box_add_new_link_title">You have more interested link ?</string>
+    <string name="link_add_title">Title</string>
+    <string name="link_add_desc">Description</string>
+    <string name="link_add_short">Url Shorten</string>
+    <string name="link_add_customize">Customize</string>
+    <string name="link_add_path">Path</string>
+    <string name="link_add_authority">Authority</string>
+    <string name="link_add_save">Save Link</string>
+    <string name="links">Links</string>
+
+
+    <!--
+        Group
+    -->
+
+    <string name="box_add_new_group">Add new group</string>
+
+
+    <!--
+        Navigation drawer
+    -->
+
+    <string name="browse">Browse public collections</string>
+    <string name="popular">Popular</string>
+    <string name="language">Languages</string>
+    <string name="setting">Settings</string>
+    <string name="about">About</string>
+    <string name="help">Help</string>
+    <string name="invite_friend">Invite friends</string>
+    <string name="my_group">My groups</string>
+
+    <!--
+        Others
+    -->
+
+    <string name="yours">Your</string>
+    <string name="downloads">Downloads</string>
+    <string name="qr_code">QR Code</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="wi_fi">Wi-Fi</string>
+    <string name="make_public">Make public</string>
+    <string name="link_paste_placeholder">Paste your link there…</string>
+    <string name="secure_http">Secure http connection</string>
+
+    <!--
+       for ui
+    -->
+
+    <string name="android">Android</string>
+    <string name="android_collection">Android collection</string>
+    <string name="android_doc">Android documentation</string>
+    <string name="android_doc_desc">
+        Lien de la documentation pour
+        les développeurs Android
+    </string>
+    <string name="username">Bakari Potter</string>
+
 </resources>
