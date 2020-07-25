@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg"  width="332" height="640" viewBox="0 0 332 640">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8f94fb"/>
+      <stop offset="0.01" stop-color="#8e93fa"/>
+      <stop offset="0.25" stop-color="#7278e4"/>
+      <stop offset="0.5" stop-color="#5e64d5"/>
+      <stop offset="0.75" stop-color="#5258cb"/>
+      <stop offset="1" stop-color="#4e54c8"/>
+    </linearGradient>
+    <clipPath id="clip-splash-screen">
+      <rect width="332" height="640"/>
+    </clipPath>
+  </defs>
+  <g id="splash-screen" clip-path="url(#clip-splash-screen)">
+    <rect width="332" height="640" fill="#070707"/>
+    <g id="Groupe_2"  transform="translate(-89 91.036)">
+      <g id="Groupe_1"  transform="translate(238 166.964)">
+        <g id="logo2" transform="translate(0)">
+          <g id="Calque_2" transform="translate(0)">
+            <g id="Calque_1">
+              <path id="Tracé_73"  d="M12.618,264.9l-5.9,5.735L0,264.735,6.555,259Z" transform="translate(0.098 -216.558)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_74"  d="M21.958,0V8.193l-15.4,12.29V42.442L0,48.177V16.387Z" transform="translate(0.098)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_75"  d="M146.29,402.227l-6.227,5.735L134,402.227,140.063,396Z" transform="translate(-111.943 -331.108)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_76"  d="M104.484,434v34.9L84,486.274v-8.685L98.257,465.3V439.735Z" transform="translate(-70.137 -362.881)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_77"  d="M147.126,78.261l-6.227,4.1L135,78.424,141.063,74Z" transform="translate(-112.78 -61.874)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_78"  d="M12.782,628.769l-6.063,3.605L0,628.605,6.555,625v.164Z" transform="translate(0.098 -522.582)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_79"  d="M34.248,100v31.79L6.555,157.845v28.185L0,189.636v-34.9l28.021-25.563V104.1Z" transform="translate(0.098 -83.613)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_80"  d="M87.933,125,84,129.588v13.6l3.933,3.769,4.261-3.605V129.261Z" transform="translate(-70.137 -104.516)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_81"  d="M87.933,477,84,481.588v13.6l3.933,3.769,4.261-3.605V481.261Z" transform="translate(-70.137 -398.835)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_33"  x1="6.212" y1="3.727" transform="translate(28.577 44.774)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_34"  x1="6.212" y1="3.727" transform="translate(0 16.197)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_35"  x2="6.212" y2="3.727" transform="translate(0 70.867)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_36"  x1="6.212" y1="3.727" transform="translate(28.577 101.929)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_82"  d="M12.618,264.9l-5.9,5.735L0,264.735,6.555,259Z" transform="translate(0.098 -216.558)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_83"  d="M21.958,0V8.193l-15.4,12.29V42.442L0,48.177V16.387Z" transform="translate(0.098)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_84"  d="M146.29,402.227l-6.227,5.735L134,402.227,140.063,396Z" transform="translate(-111.943 -331.108)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_85"  d="M104.484,434v34.9L84,486.274v-8.685L98.257,465.3V439.735Z" transform="translate(-70.137 -362.881)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_86"  d="M147.126,78.261l-6.227,4.1L135,78.424,141.063,74Z" transform="translate(-112.78 -61.874)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_87"  d="M12.782,628.769l-6.063,3.605L0,628.605,6.555,625v.164Z" transform="translate(0.098 -522.582)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_88"  d="M34.248,100v31.79L6.555,157.845v28.185L0,189.636v-34.9l28.021-25.563V104.1Z" transform="translate(0.098 -83.613)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_89"  d="M87.933,125,84,129.588v13.6l3.933,3.769,4.261-3.605V129.261Z" transform="translate(-70.137 -104.516)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_90"  d="M87.933,477,84,481.588v13.6l3.933,3.769,4.261-3.605V481.261Z" transform="translate(-70.137 -398.835)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_37"  x1="6.212" y1="3.727" transform="translate(28.577 44.774)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_38"  x1="6.212" y1="3.727" transform="translate(0 16.197)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_39"  x2="6.212" y2="3.727" transform="translate(0 70.867)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_40"  x1="6.212" y1="3.727" transform="translate(28.577 101.929)" fill="url(#linear-gradient)"/>
+            </g>
+          </g>
+        </g>
+        <g id="logo2-2"  transform="translate(0)" style="mix-blend-mode: multiply;isolation: isolate">
+          <g id="Calque_2-2"  transform="translate(0)">
+            <g id="Calque_1-2">
+              <path id="Tracé_73-2"  d="M12.618,264.9l-5.9,5.735L0,264.735,6.555,259Z" transform="translate(0.098 -216.558)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_74-2"  d="M21.958,0V8.193l-15.4,12.29V42.442L0,48.177V16.387Z" transform="translate(0.098)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_75-2"  d="M146.29,402.227l-6.227,5.735L134,402.227,140.063,396Z" transform="translate(-111.943 -331.108)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_76-2"  d="M104.484,434v34.9L84,486.274v-8.685L98.257,465.3V439.735Z" transform="translate(-70.137 -362.881)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_77-2"  d="M147.126,78.261l-6.227,4.1L135,78.424,141.063,74Z" transform="translate(-112.78 -61.874)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_78-2"  d="M12.782,628.769l-6.063,3.605L0,628.605,6.555,625v.164Z" transform="translate(0.098 -522.582)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_79-2"  d="M34.248,100v31.79L6.555,157.845v28.185L0,189.636v-34.9l28.021-25.563V104.1Z" transform="translate(0.098 -83.613)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_80-2"  d="M87.933,125,84,129.588v13.6l3.933,3.769,4.261-3.605V129.261Z" transform="translate(-70.137 -104.516)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_81-2"  d="M87.933,477,84,481.588v13.6l3.933,3.769,4.261-3.605V481.261Z" transform="translate(-70.137 -398.835)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_33-2"  x1="6.212" y1="3.727" transform="translate(28.577 44.774)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_34-2"  x1="6.212" y1="3.727" transform="translate(0 16.197)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_35-2"  x2="6.212" y2="3.727" transform="translate(0 70.867)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_36-2"  x1="6.212" y1="3.727" transform="translate(28.577 101.929)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_82-2"  d="M12.618,264.9l-5.9,5.735L0,264.735,6.555,259Z" transform="translate(0.098 -216.558)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_83-2"  d="M21.958,0V8.193l-15.4,12.29V42.442L0,48.177V16.387Z" transform="translate(0.098)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_84-2"  d="M146.29,402.227l-6.227,5.735L134,402.227,140.063,396Z" transform="translate(-111.943 -331.108)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_85-2"  d="M104.484,434v34.9L84,486.274v-8.685L98.257,465.3V439.735Z" transform="translate(-70.137 -362.881)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_86-2"  d="M147.126,78.261l-6.227,4.1L135,78.424,141.063,74Z" transform="translate(-112.78 -61.874)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_87-2"  d="M12.782,628.769l-6.063,3.605L0,628.605,6.555,625v.164Z" transform="translate(0.098 -522.582)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_88-2"  d="M34.248,100v31.79L6.555,157.845v28.185L0,189.636v-34.9l28.021-25.563V104.1Z" transform="translate(0.098 -83.613)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_89-2"  d="M87.933,125,84,129.588v13.6l3.933,3.769,4.261-3.605V129.261Z" transform="translate(-70.137 -104.516)" fill="url(#linear-gradient)"/>
+              <path id="Tracé_90-2"  d="M87.933,477,84,481.588v13.6l3.933,3.769,4.261-3.605V481.261Z" transform="translate(-70.137 -398.835)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_37-2"  x1="6.212" y1="3.727" transform="translate(28.577 44.774)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_38-2"  x1="6.212" y1="3.727" transform="translate(0 16.197)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_39-2"  x2="6.212" y2="3.727" transform="translate(0 70.867)" fill="url(#linear-gradient)"/>
+              <line id="Ligne_40-2"  x1="6.212" y1="3.727" transform="translate(28.577 101.929)" fill="url(#linear-gradient)"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

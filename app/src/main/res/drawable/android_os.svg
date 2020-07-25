@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="480pt" height="480pt" viewBox="0 0 480 480" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 120 290 C 120 301 111 310 100 310 C 89 310 80 301 80 290 L 80 200 C 80 189 89 180 100 180 C 111 180 120 189 120 200 Z "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 400 290 C 400 301 391 310 380 310 C 369 310 360 301 360 290 L 360 200 C 360 189 369 180 380 180 C 391 180 400 189 400 200 Z "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 220 400 C 220 411 211 420 200 420 C 189 420 180 411 180 400 L 180 310 C 180 299 189 290 200 290 C 211 290 220 299 220 310 Z "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 300 400 C 300 411 291 420 280 420 C 269 420 260 411 260 400 L 260 310 C 260 299 269 290 280 290 C 291 290 300 299 300 310 Z "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 140 180 L 140 330 C 140 341 149 350 160 350 L 320 350 C 331 350 340 341 340 330 L 340 180 Z "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 240 80 C 180 80 143 116 140 160 L 340 160 C 337 116 300 80 240 80 Z M 200 136 C 194 136 190 132 190 126 C 190 120 194 116 200 116 C 206 116 210 120 210 126 C 210 131 206 136 200 136 Z M 280 136 C 274 136 270 132 270 126 C 270 120 274 116 280 116 C 286 116 290 120 290 126 C 290 131 286 136 280 136 Z "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 283 105 C 281 105 279 104 277 103 C 272 100 271 94 274 89 L 291 64 C 294 59 300 58 305 61 C 310 64 311 70 308 75 L 291 100 C 290 103 287 105 283 105 Z "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:#7CB342;fill-opacity:1;" d="M 193 101 C 190 101 186 99 185 96 L 172 75 C 169 70 170 64 175 61 C 180 58 186 59 189 64 L 202 85 C 205 90 204 96 199 99 C 197 100 195 101 193 101 Z "/>
+</g>
+</svg>
