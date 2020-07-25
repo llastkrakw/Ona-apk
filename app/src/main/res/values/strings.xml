@@ -7,50 +7,30 @@
     -->
 
     <string name="ob1_title">Shorten and Secured Links </string>
-    <string name="ob1_content">
-        Customize your links to make them
-        professional, intuitive and easily
-        interpretable. We'll take care of
-        notifying you if a link is safe for you.
-    </string>
+    <string name="ob1_content">Customize your links to make them professional, intuitive and easily interpretable. We\'ll take care of notifying you if a link is safe for you. </string>
 
     <!--
    onboarding2
      -->
 
-    <string name="ob2_title">Shorten and Secured Links </string>
-    <string name="ob2_content">
-        Customize your links to make them
-        professional, intuitive and easily
-        interpretable. We'll take care of
-        notifying you if a link is safe for you.
-    </string>
+    <string name="ob2_title">Organize and Save yours Links</string>
+    <string name="ob2_content">Customize your links to make them professional, intuitive and easily interpretable. We\'ll take care of notifying you if a link is safe for you. </string>
 
     <!--
        onboarding3
     -->
 
-    <string name="ob3_title">Shorten and Secured Links </string>
-    <string name="ob3_content">
-        Customize your links to make them
-        professional, intuitive and easily
-        interpretable. We'll take care of
-        notifying you if a link is safe for you.
-    </string>
+    <string name="ob3_title">Create Collections and share with the world </string>
+    <string name="ob3_content">Customize your links to make them professional, intuitive and easily interpretable. We\'ll take care of notifying you if a link is safe for you.</string>
 
     <!--
        onboarding4
     -->
 
-    <string name="ob4_title">Shorten and Secured Links </string>
-    <string name="ob4_content">
-        Customize your links to make them
-        professional, intuitive and easily
-        interpretable. We'll take care of
-        notifying you if a link is safe for you.
-    </string>
+    <string name="ob4_title">Sync your devices Clipboards and Work faster </string>
+    <string name="ob4_content">Customize your links to make them professional, intuitive and easily interpretable. We\'ll take care of notifying you if a link is safe for you.</string>
 
-    <string name="skip">Skip</string>
+    <string name="skip">Skip >></string>
     <string name="go">GO !</string>
 
     <!--
