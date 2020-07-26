@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".splash.ViewPagerFragment1"
-    android:background="@drawable/ic_onboarding_bg1">
+    android:background="@drawable/ic_onboarding_bg1"
+    android:animateLayoutChanges="true">
 
     <ImageView
         android:id="@+id/illustration1"
@@ -54,7 +55,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/text_ripple"
+        android:clickable="true"
+        android:focusable="true" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

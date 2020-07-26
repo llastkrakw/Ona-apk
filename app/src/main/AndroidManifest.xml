@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/ic_random_box2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".splash.OnboardingActivity"></activity>
+        <activity android:name=".splash.OnboardingActivity"/>
         <activity android:name=".splash.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
