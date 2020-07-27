@@ -8,21 +8,21 @@ public class UrlElement {
     private String title;
     private String description;
     private String author;
-    private Date createdAt;
+    private String createdAt;
     private int  likes;
 
     public UrlElement(){
 
     }
 
-    public UrlElement(String title, String description, String author, Date createdAt) {
+    public UrlElement(String title, String description, String author, String createdAt) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.createdAt = createdAt;
     }
 
-    public UrlElement(String id, String title, String description, String author, Date createdAt, int likes) {
+    public UrlElement(String id, String title, String description, String author, String createdAt, int likes) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -55,11 +55,27 @@ public class UrlElement {
         this.author = author;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }

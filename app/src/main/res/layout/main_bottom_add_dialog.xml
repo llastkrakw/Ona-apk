@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/box_addd_shape"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_new_link"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:text="@string/box_add_new_link"
+            style="@style/OnboardingContentStyle"
+            android:textAllCaps="false"
+            android:background="@drawable/box_add_selection_shape"
+            android:drawableStart="@drawable/ic_add_link"
+            android:padding="15dp"
+            android:elevation="7dp"/>
+
+        <Button
+            android:id="@+id/button_new_coll"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:text="@string/box_add_new_collection"
+            style="@style/OnboardingContentStyle"
+            android:textAllCaps="false"
+            android:background="@drawable/box_add_selection_shape"
+            android:padding="15dp"
+            android:drawableStart="@drawable/ic_add_folder"
+            android:layout_marginTop="15dp"
+            android:elevation="7dp"/>
+
+        <Button
+            android:id="@+id/button_new_group"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:text="@string/box_add_new_group"
+            style="@style/OnboardingContentStyle"
+            android:textAllCaps="false"
+            android:background="@drawable/box_add_selection_shape"
+            android:padding="15dp"
+            android:drawableStart="@drawable/ic_add_user_group_man_man"
+            android:layout_marginTop="15dp"
+            android:elevation="7dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logo_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/copyright"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:elevation="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/drawer_container"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:background="@drawable/navigation_drawer_shape">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                style="@style/ProfileNameStyle"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                style="@style/ShortTextStyle"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:background="@drawable/text_ripple"
+                android:focusable="true"
+                android:clickable="true"
+                android:drawablePadding="10dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/textColorGrey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/browse"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:drawableStart="@drawable/ic_folder"
+            android:drawablePadding="8dp"
+            android:background="@drawable/text_ripple"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/popular"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_fire_element"
+            android:drawablePadding="8dp"
+            android:background="@drawable/text_ripple"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/language"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_language"
+            android:drawablePadding="8dp"
+            android:background="@drawable/text_ripple"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_settings_filled"
+            android:drawablePadding="8dp"
+            android:background="@drawable/text_ripple"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_info"
+            android:drawablePadding="8dp"
+            android:background="@drawable/text_ripple"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_help"
+            android:drawablePadding="8dp"
+            android:background="@drawable/text_ripple"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/invite_friend"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_add_user_male"
+            android:drawablePadding="8dp"
+            android:background="@drawable/text_ripple"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/textColorGrey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_group"
+            style="@style/NavTextStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:drawableEnd="@drawable/ic_group"
+            android:drawablePadding="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
