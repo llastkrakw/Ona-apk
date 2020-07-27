@@ -110,7 +110,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/rec_link_title"
         android:padding="10dp"
-        android:visibility="gone"/>
+        android:visibility="visible"
+        tools:listitem="@layout/collection_item"/>
 
 
     <androidx.cardview.widget.CardView
@@ -510,6 +511,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="10dp"
         android:visibility="visible"
         tools:listitem="@layout/link_item"/>
 

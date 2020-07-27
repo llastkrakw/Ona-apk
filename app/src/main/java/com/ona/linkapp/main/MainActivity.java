@@ -19,17 +19,20 @@ import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.pwittchen.swipe.library.rx2.SimpleSwipeListener;
 import com.github.pwittchen.swipe.library.rx2.Swipe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.ona.linkapp.adapters.CollectionAdapter;
 import com.ona.linkapp.adapters.LinkAdapter;
 import com.ona.linkapp.helpers.ImageResize;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ona.linkapp.R;
+import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.splash.OnboardingActivity;
 import com.ona.linkapp.splash.SplashScreen;
@@ -55,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private Swipe swipe;
 
     private RecyclerView linkRecyclerView;
+    private RecyclerView collRecyclerView;
     private LinkAdapter linkAdapter;
+    private CollectionAdapter collAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         linkRecyclerView = (RecyclerView) findViewById(R.id.link_recyclerView);
+        collRecyclerView = (RecyclerView) findViewById(R.id.coll_recyclerView);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -185,12 +191,18 @@ public class MainActivity extends AppCompatActivity {
                 linkAdapter = new LinkAdapter(MainActivity.this, createFakeLink());
                 linkRecyclerView.setAdapter(linkAdapter);
 
+                collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
+                collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                collRecyclerView.setAdapter(collAdapter);
+
+
             }
         }, 4000);
 
     }
 
     private void hideShimmer(){
+
         shimmer1.setVisibility(View.INVISIBLE);
         shimmer2.setVisibility(View.INVISIBLE);
         shimmer3.setVisibility(View.INVISIBLE);
@@ -198,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
         shimmer5.setVisibility(View.INVISIBLE);
         shimmer6.setVisibility(View.INVISIBLE);
         container.stopShimmer();
+
     }
 
     private void showShimmer(){
@@ -257,5 +270,31 @@ public class MainActivity extends AppCompatActivity {
 
         return links;
 
+    }
+
+    public List<Collection>  createFakeCollection(){
+
+        List<Collection> collections = new ArrayList<>();
+
+        Collection link1 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+        Collection link2 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+        Collection link3 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+        Collection link4 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+        Collection link5 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+        Collection link6 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+        Collection link7 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+        Collection link8 = new Collection("Android", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink());
+
+
+        collections.add(link1);
+        collections.add(link2);
+        collections.add(link3);
+        collections.add(link4);
+        collections.add(link5);
+        collections.add(link6);
+        collections.add(link7);
+        collections.add(link8);
+
+        return collections;
     }
 }
