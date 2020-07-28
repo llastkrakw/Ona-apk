@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="140dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/coll_logo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/ic_random_box3"
                 android:contentDescription="@string/copyright"
@@ -37,6 +37,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
                 style="@style/MainTitleStyle"
+                android:textSize="18sp"
                 android:textColor="@color/textColorDark"/>
 
 
@@ -45,7 +46,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/coll_title"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/links_number"
