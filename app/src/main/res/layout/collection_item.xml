@@ -3,14 +3,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    android:clickable="true"
+    android:focusable="true">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="130dp"
-        android:layout_height="140dp"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="12dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
-        android:layout_marginEnd="12dp">
+        app:cardUseCompatPadding="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,39 +25,40 @@
                 android:id="@+id/coll_logo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_random_box3"
+                android:layout_marginTop="8dp"
                 android:contentDescription="@string/copyright"
+                android:src="@drawable/ic_random_box3"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/coll_title"
+                style="@style/MainTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/android"
-                app:layout_constraintTop_toBottomOf="@id/coll_logo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
-                style="@style/MainTitleStyle"
+                android:text="@string/android"
+                android:textColor="@color/textColorDark"
                 android:textSize="18sp"
-                android:textColor="@color/textColorDark"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/coll_logo" />
 
 
             <TextView
                 android:id="@+id/coll_link_numb"
+                style="@style/NavTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/coll_title"
-                android:layout_marginTop="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_link_gray"
                 android:text="@string/links_number"
-                style="@style/NavTextStyle"
-                android:drawableStart="@drawable/ic_link_gray"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/coll_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
