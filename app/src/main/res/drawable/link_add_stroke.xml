@@ -1,0 +1,15 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/colorPrimary">
+    <item>
+        <shape>
+            <solid android:color="@color/transparent"/>
+            <stroke
+                android:color="@color/colorPrimary"
+                android:dashGap="3dp"
+                android:dashWidth="8dp"
+                android:width="2dp"
+                />
+
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+</ripple>

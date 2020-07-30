@@ -53,6 +53,8 @@
     <string name="create_at">Created At</string>
     <string name="box_add_new_collection">Add new collection</string>
     <string name="box_add_new_collection_title">You have more interested collection ?</string>
+    <string name="coll_all">All your collections</string>
+    <string name="coll_all_check">Check all your collections</string>
 
     <!--
        Links
@@ -69,6 +71,8 @@
     <string name="link_add_authority">Authority</string>
     <string name="link_add_save">Save Link</string>
     <string name="links">Links</string>
+    <string name="link_all">All your links</string>
+    <string name="link_all_check">Check all your link there</string>
 
 
     <!--
@@ -95,7 +99,7 @@
         Others
     -->
 
-    <string name="yours">Your</string>
+    <string name="yours">Yours</string>
     <string name="downloads">Downloads</string>
     <string name="qr_code">QR Code</string>
     <string name="bluetooth">Bluetooth</string>
@@ -118,5 +122,6 @@
     <string name="username">Bakari Potter</string>
     <string name="email">llastkrakw21@gmail.com</string>
     <string name="links_number">14 Links</string>
+    <string name="number">14</string>
 
 </resources>

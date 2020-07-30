@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.eftimoff.viewpagertransformers.AccordionTransformer;
 import com.eftimoff.viewpagertransformers.CubeInTransformer;
 import com.eftimoff.viewpagertransformers.CubeOutTransformer;
 import com.eftimoff.viewpagertransformers.ParallaxPageTransformer;
@@ -44,7 +45,7 @@ public class OnboardingActivity extends AppCompatActivity {
         fragmentList.add(ViewPagerFragment4.newInstance());
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0, fragmentList);
-            pager.setPageTransformer(true, new CubeInTransformer());
+            pager.setPageTransformer(true, new AccordionTransformer());
         pager.setAdapter(pagerAdapter);
         inkPageIndicator.setViewPager(pager);
 

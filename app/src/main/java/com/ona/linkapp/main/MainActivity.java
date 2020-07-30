@@ -10,16 +10,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -32,6 +36,8 @@ import com.ona.linkapp.helpers.ImageResize;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ona.linkapp.R;
+import com.ona.linkapp.main.activities.AllCollActivity;
+import com.ona.linkapp.main.activities.AllLinkActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.splash.OnboardingActivity;
@@ -61,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView collRecyclerView;
     private LinkAdapter linkAdapter;
     private CollectionAdapter collAdapter;
+    private TextView link_view_all;
+    private TextView coll_view_all;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,16 +196,40 @@ public class MainActivity extends AppCompatActivity {
                 hideShimmer();
                 linkRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+                final LayoutAnimationController controller =
+                        AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
+
                 linkAdapter = new LinkAdapter(MainActivity.this, createFakeLink());
+                linkRecyclerView.setLayoutAnimation(controller);
                 linkRecyclerView.setAdapter(linkAdapter);
 
                 collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
                 collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                collRecyclerView.setLayoutAnimation(controller);
                 collRecyclerView.setAdapter(collAdapter);
 
 
             }
         }, 4000);
+
+
+        link_view_all = (TextView) findViewById(R.id.link_view_all);
+        link_view_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent view_all = new Intent(MainActivity.this, AllLinkActivity.class);
+                startActivity(view_all);
+            }
+        });
+
+        coll_view_all = (TextView) findViewById(R.id.col_view_all);
+        coll_view_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent view_all = new Intent(MainActivity.this, AllCollActivity.class);
+                startActivity(view_all);
+            }
+        });
 
     }
 
