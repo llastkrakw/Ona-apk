@@ -1,7 +1,9 @@
 package com.ona.linkapp.main;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,20 +33,24 @@ import com.github.pwittchen.swipe.library.rx2.SimpleSwipeListener;
 import com.github.pwittchen.swipe.library.rx2.Swipe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ona.linkapp.adapters.CollectionAdapter;
+import com.ona.linkapp.adapters.GroupAdapter;
 import com.ona.linkapp.adapters.LinkAdapter;
 import com.ona.linkapp.helpers.ImageResize;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ona.linkapp.R;
+import com.ona.linkapp.helpers.SwipCallback;
 import com.ona.linkapp.main.activities.AllCollActivity;
 import com.ona.linkapp.main.activities.AllLinkActivity;
 import com.ona.linkapp.models.Collection;
+import com.ona.linkapp.models.Group;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.splash.OnboardingActivity;
 import com.ona.linkapp.splash.SplashScreen;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -203,6 +209,21 @@ public class MainActivity extends AppCompatActivity {
                 linkRecyclerView.setLayoutAnimation(controller);
                 linkRecyclerView.setAdapter(linkAdapter);
 
+                SwipCallback swipCallback = new SwipCallback(MainActivity.this){
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                        final int position = viewHolder.getAdapterPosition();
+                        final Link item = linkAdapter.getData().get(position);
+
+                        linkAdapter.removeItem(position);
+
+                    }
+                };
+                ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipCallback);
+                itemTouchhelper.attachToRecyclerView(linkRecyclerView);
+
                 collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
                 collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
                 collRecyclerView.setLayoutAnimation(controller);
@@ -259,6 +280,11 @@ public class MainActivity extends AppCompatActivity {
 
         final Dialog navigationDialog = new Dialog(MainActivity.this);
         navigationDialog.setContentView(R.layout.navigation_drawer);
+
+        RecyclerView recyclerView_group = navigationDialog.findViewById(R.id.group_recycler);
+        GroupAdapter adapter = new GroupAdapter(createFakeGroup(), MainActivity.this);
+        recyclerView_group.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView_group.setAdapter(adapter);
 
         Objects.requireNonNull(navigationDialog.getWindow()).setGravity(Gravity.START);
         navigationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -328,5 +354,23 @@ public class MainActivity extends AppCompatActivity {
         collections.add(link8);
 
         return collections;
+    }
+
+    public List<Group> createFakeGroup(){
+
+        List<Group> groups = new ArrayList<>();
+
+        Group group1 = new Group("Android Community", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink(), null, createFakeCollection());
+        Group group2 = new Group("Android Community", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink(), null, createFakeCollection());
+        Group group3 = new Group("Android Community", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink(), null, createFakeCollection());
+        Group group4 = new Group("Android Community", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", createFakeLink(), null, createFakeCollection());
+
+        groups.add(group1);
+        groups.add(group2);
+        groups.add(group3);
+        groups.add(group4);
+
+        return groups;
+
     }
 }

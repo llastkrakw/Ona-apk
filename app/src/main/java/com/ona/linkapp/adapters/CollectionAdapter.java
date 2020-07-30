@@ -1,6 +1,8 @@
 package com.ona.linkapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ona.linkapp.R;
+import com.ona.linkapp.main.activities.CollectionDetailActivity;
 import com.ona.linkapp.models.Collection;
+import com.ona.linkapp.models.Group;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.ViewHolder> {
 
     private List<Collection> collections;
+    private List<Collection> collections_helper;
     private Context context;
     private Random random;
 
@@ -33,6 +40,8 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         this.collections = collections;
         this.context = context;
         random = new Random();
+        this.collections_helper = new ArrayList<>();
+        this.collections_helper.addAll(collections);
     }
 
     @NonNull
@@ -63,7 +72,21 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         return collections.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public void removeItem(int position) {
+        collections.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(Collection item, int position) {
+        collections.add(position, item);
+        notifyItemInserted(position);
+    }
+
+    public ArrayList<Collection> getData() {
+        return new ArrayList<>(collections);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView collLogo;
         private TextView  collTitle;
@@ -76,6 +99,29 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
             collTitle = (TextView) itemView.findViewById(R.id.coll_title);
             collLinkNum = (TextView) itemView.findViewById(R.id.coll_link_numb);
 
+            itemView.setOnClickListener(this);
+
         }
+
+        @Override
+        public void onClick(View view) {
+            Intent detailsIntent = new Intent(context, CollectionDetailActivity.class);
+            context.startActivity(detailsIntent);
+        }
+    }
+
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        collections.clear();
+        if (charText.length() == 0) {
+            collections.addAll(collections_helper);
+        } else {
+            for (Collection collection : collections_helper) {
+                if (collection.getTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    collections.add(collection);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }

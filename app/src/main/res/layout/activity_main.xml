@@ -34,7 +34,24 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/main_ona_sync"
+            android:id="@+id/main_cast"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_baseline_cast_24"
+            android:background="@drawable/white_ripple"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/copyright"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/main_search"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/main_search"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="10dp"

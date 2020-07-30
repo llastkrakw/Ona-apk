@@ -12,16 +12,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ona.linkapp.R;
+import com.ona.linkapp.models.Collection;
+import com.ona.linkapp.models.Group;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.models.UrlElement;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
 
     private  Context context;
     private  List<Link> links;
+    private  List<Link> links_helper;
     private  Random random;
 
     private final int[] RANDOM_LOGO = {
@@ -35,6 +40,8 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
         this.context = context;
         this.links = links;
         random = new Random();
+        this.links_helper = new ArrayList<>();
+        this.links_helper.addAll(links);
     }
 
 
@@ -64,6 +71,8 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
         return links.size();
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView randomLogo;
@@ -85,5 +94,35 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
         public void onClick(View view) {
             Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void removeItem(int position) {
+        links.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(Link item, int position) {
+        links.add(position, item);
+        notifyItemInserted(position);
+    }
+
+    public ArrayList<Link> getData() {
+        return new ArrayList<>(links);
+    }
+
+    public void filter(String charText) {
+
+        charText = charText.toLowerCase(Locale.getDefault());
+        links.clear();
+        if (charText.length() == 0) {
+            links.addAll(links_helper);
+        } else {
+            for (Link link : links_helper) {
+                if (link.getTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    links.add(link);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }

@@ -80,6 +80,7 @@
     -->
 
     <string name="box_add_new_group">Add new group</string>
+    <string name="group_name">Android community</string>
 
 
     <!--
@@ -107,6 +108,8 @@
     <string name="make_public">Make public</string>
     <string name="link_paste_placeholder">Paste your link there…</string>
     <string name="secure_http">Secure http connection</string>
+    <string name="clicked">Clicked</string>
+    <string name="public_value">Public</string>
 
     <!--
        for ui
@@ -123,5 +126,6 @@
     <string name="email">llastkrakw21@gmail.com</string>
     <string name="links_number">14 Links</string>
     <string name="number">14</string>
+    <string name="date">21/10/2001</string>
 
 </resources>
