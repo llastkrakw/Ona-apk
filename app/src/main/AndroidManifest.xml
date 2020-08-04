@@ -16,7 +16,11 @@
         android:roundIcon="@drawable/ic_random_box2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.activities.CollectionDetailActivity"></activity>
+        <activity android:name=".main.activities.AddGroupActivity"></activity>
+        <activity android:name=".main.activities.AddCollActivity" />
+        <activity android:name=".main.activities.AddLinkActivity" />
+        <activity android:name=".main.activities.LinkDetailActivity" />
+        <activity android:name=".main.activities.CollectionDetailActivity" />
         <activity android:name=".main.activities.AllCollActivity" />
         <activity android:name=".main.activities.AllLinkActivity" />
         <activity android:name=".splash.OnboardingActivity" />

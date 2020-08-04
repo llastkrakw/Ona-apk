@@ -51,7 +51,7 @@
     <string name="visibility">Visibility</string>
     <string name="like">Likes</string>
     <string name="create_at">Created At</string>
-    <string name="box_add_new_collection">Add new collection</string>
+    <string name="box_add_new_collection">Collection</string>
     <string name="box_add_new_collection_title">You have more interested collection ?</string>
     <string name="coll_all">All your collections</string>
     <string name="coll_all_check">Check all your collections</string>
@@ -61,14 +61,14 @@
     -->
 
     <string name="go_to_res">Go to resource</string>
-    <string name="box_add_new_link">Add new link</string>
+    <string name="box_add_new_link">Link</string>
     <string name="box_add_new_link_title">You have more interested link ?</string>
     <string name="link_add_title">Title</string>
     <string name="link_add_desc">Description</string>
     <string name="link_add_short">Url Shorten</string>
     <string name="link_add_customize">Customize</string>
-    <string name="link_add_path">Path</string>
-    <string name="link_add_authority">Authority</string>
+    <string name="link_add_path">Path :</string>
+    <string name="link_add_authority">Auth. :</string>
     <string name="link_add_save">Save Link</string>
     <string name="links">Links</string>
     <string name="link_all">All your links</string>
@@ -79,7 +79,7 @@
         Group
     -->
 
-    <string name="box_add_new_group">Add new group</string>
+    <string name="box_add_new_group">Group</string>
     <string name="group_name">Android community</string>
 
 
@@ -127,5 +127,11 @@
     <string name="links_number">14 Links</string>
     <string name="number">14</string>
     <string name="date">21/10/2001</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="shorten">Shorten</string>
+    <string name="customize">Customize</string>
+    <string name="secure_connection">Secure connection</string>
+    <string name="is_public">Is public</string>
 
 </resources>

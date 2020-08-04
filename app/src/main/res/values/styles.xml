@@ -51,5 +51,20 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="edit_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/texbox_add_shape</item>
+        <item name="elevation">7dp</item>
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="fontFamily">@font/gilroy_light</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 
 </resources>

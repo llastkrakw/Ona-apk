@@ -40,6 +40,9 @@ import com.ona.linkapp.helpers.ImageResize;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ona.linkapp.R;
 import com.ona.linkapp.helpers.SwipCallback;
+import com.ona.linkapp.main.activities.AddCollActivity;
+import com.ona.linkapp.main.activities.AddGroupActivity;
+import com.ona.linkapp.main.activities.AddLinkActivity;
 import com.ona.linkapp.main.activities.AllCollActivity;
 import com.ona.linkapp.main.activities.AllLinkActivity;
 import com.ona.linkapp.models.Collection;
@@ -143,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
+                        Intent addLinkInt = new Intent(MainActivity.this, AddLinkActivity.class);
+                        startActivity(addLinkInt);
+
                     }
                 });
 
@@ -150,12 +156,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
+                        Intent addGroupInt = new Intent(MainActivity.this, AddCollActivity.class);
+                        startActivity(addGroupInt);
+
                     }
                 });
 
                 addGroup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        Intent addGroupInt = new Intent(MainActivity.this, AddGroupActivity.class);
+                        startActivity(addGroupInt);
 
                     }
                 });

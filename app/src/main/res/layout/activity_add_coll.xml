@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.activities.AddCollActivity"
+    android:background="@color/add_bg">
+
+
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/NavTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/title_edt"
+        android:text="@string/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/title_edt"
+        style="@style/edit_text"
+        android:autofillHints="@string/copyright"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+    <TextView
+        android:id="@+id/desc"
+        style="@style/NavTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:labelFor="@id/desc_edt"
+        android:text="@string/description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_edt" />
+
+    <EditText
+        android:id="@+id/desc_edt"
+        style="@style/edit_text"
+        android:layout_height="90dp"
+        app:layout_constraintTop_toBottomOf="@id/desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:autofillHints="@string/copyright"
+        android:inputType="textMultiLine"
+        android:padding="15dp"
+        />
+
+
+    <TextView
+        android:id="@+id/shorten"
+        style="@style/NavTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:labelFor="@id/short_edt"
+        android:text="@string/shorten"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/desc_edt" />
+
+
+    <LinearLayout
+        android:id="@+id/short_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/shorten"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        android:padding="0dp">
+
+        <EditText
+            android:id="@+id/short_edt"
+            style="@style/edit_text"
+            android:layout_width="210dp"
+            android:autofillHints="@string/copyright"
+            android:inputType="text"
+            android:drawableStart="@drawable/ic_link_pink"
+            android:padding="10dp"
+            android:layout_marginTop="0dp"
+            />
+
+        <ImageButton
+            android:id="@+id/copy"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_copy"
+            android:contentDescription="@string/copyright"
+            android:src="@drawable/ic_copy"
+            />
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/customize"
+        style="@style/NavTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/customize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/short_box" />
+
+
+    <RelativeLayout
+        android:id="@+id/box_custom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/con_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customize">
+
+
+        <TextView
+            android:id="@+id/path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gilroy_light"
+            android:labelFor="@id/path_edt"
+            android:text="@string/link_add_path"
+            android:textColor="@color/textColorGrey"
+            android:layout_alignBaseline="@id/path_edt"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"/>
+
+
+        <TextView
+            android:id="@+id/authority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gilroy_light"
+            android:labelFor="@id/authority_edt"
+            android:text="@string/link_add_authority"
+            android:textColor="@color/textColorGrey"
+            android:layout_alignBaseline="@id/authority_edt"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:id="@+id/path_edt"
+            style="@style/edit_text"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:autofillHints="@string/copyright"
+            android:inputType="text"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"/>
+
+        <EditText
+            android:id="@+id/authority_edt"
+            style="@style/edit_text"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:autofillHints="@string/copyright"
+            android:inputType="text"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="60dp"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/con_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/box_custom"
+        app:layout_constraintBottom_toTopOf="@id/save_link"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/is_public"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/gilroy_light"/>
+
+        <CheckBox
+            android:id="@+id/secure_connection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/save_link"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/link_add_save"
+        android:textAllCaps="false"
+        android:textColor="@color/textColorWhite"
+        android:background="@drawable/button_shape"
+        android:elevation="7dp"
+        android:padding="15dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:fontFamily="@font/gilroy_light"
+        android:drawableEnd="@drawable/ic_downloads"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

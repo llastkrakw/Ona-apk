@@ -1,6 +1,7 @@
 package com.ona.linkapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ona.linkapp.R;
+import com.ona.linkapp.main.activities.LinkDetailActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
 import com.ona.linkapp.models.Link;
@@ -92,7 +94,10 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show();
+
+            Intent detail = new Intent(context, LinkDetailActivity.class);
+            context.startActivity(detail);
+
         }
     }
 
