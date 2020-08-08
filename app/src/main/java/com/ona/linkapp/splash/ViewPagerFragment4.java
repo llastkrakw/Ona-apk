@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ona.linkapp.R;
+import com.ona.linkapp.loginAndRegister.LoginActivity;
 import com.ona.linkapp.main.MainActivity;
 
 public class ViewPagerFragment4 extends Fragment {
@@ -52,8 +53,8 @@ public class ViewPagerFragment4 extends Fragment {
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent main = new Intent(context, MainActivity.class);
-                context.startActivity(main);
+                Intent login = new Intent(context, LoginActivity.class);
+                context.startActivity(login);
             }
         });
     }

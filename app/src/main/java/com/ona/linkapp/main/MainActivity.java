@@ -8,33 +8,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.github.pwittchen.swipe.library.rx2.SimpleSwipeListener;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pwittchen.swipe.library.rx2.Swipe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ona.linkapp.adapters.CollectionAdapter;
 import com.ona.linkapp.adapters.GroupAdapter;
 import com.ona.linkapp.adapters.LinkAdapter;
+import com.ona.linkapp.datas.online.LinkDAO;
 import com.ona.linkapp.helpers.ImageResize;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -48,12 +46,9 @@ import com.ona.linkapp.main.activities.AllLinkActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
 import com.ona.linkapp.models.Link;
-import com.ona.linkapp.splash.OnboardingActivity;
-import com.ona.linkapp.splash.SplashScreen;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -79,15 +74,20 @@ public class MainActivity extends AppCompatActivity {
     private TextView link_view_all;
     private TextView coll_view_all;
 
+    private LinkDAO linkDAO = new LinkDAO();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setUiProfile();
+        setUi();
+
+
     }
 
-    private void setUiProfile(){
+    private void setUi(){
 
         circularImageView = (CircularImageView) findViewById(R.id.main_image_profile);
 
@@ -212,14 +212,8 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
 
                 hideShimmer();
-                linkRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-                final LayoutAnimationController controller =
-                        AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
-
-                linkAdapter = new LinkAdapter(MainActivity.this, createFakeLink());
-                linkRecyclerView.setLayoutAnimation(controller);
-                linkRecyclerView.setAdapter(linkAdapter);
+                new LinkTask().execute();
 
                 SwipCallback swipCallback = new SwipCallback(MainActivity.this){
 
@@ -235,6 +229,9 @@ public class MainActivity extends AppCompatActivity {
                 };
                 ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipCallback);
                 itemTouchhelper.attachToRecyclerView(linkRecyclerView);
+
+                final LayoutAnimationController controller =
+                        AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
 
                 collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
                 collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
@@ -314,6 +311,55 @@ public class MainActivity extends AppCompatActivity {
         swipe.dispatchTouchEvent(event);
         return super.dispatchTouchEvent(event);
     }*/
+
+
+    private void updateUiLink(List<Link> links){
+
+        linkRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
+
+        linkAdapter = new LinkAdapter(MainActivity.this, links);
+        linkRecyclerView.setLayoutAnimation(controller);
+        linkRecyclerView.setAdapter(linkAdapter);
+
+    }
+
+
+    class LinkTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            try {
+                return linkDAO.getLinks();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            if(s != null){
+
+                ObjectMapper linkMapper = new ObjectMapper();
+
+                try {
+                    List<Link> links = linkMapper.readValue(s, new TypeReference<List<Link>>(){});
+                    updateUiLink(links);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+    }
 
     public List<Link> createFakeLink(){
 

@@ -16,7 +16,10 @@
         android:roundIcon="@drawable/ic_random_box2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.activities.AddGroupActivity"></activity>
+        <activity android:name=".loginAndRegister.RegisterActivity"></activity>
+        <activity android:name=".loginAndRegister.LoginActivity" />
+        <activity android:name=".main.activities.SearchActivity" />
+        <activity android:name=".main.activities.AddGroupActivity" />
         <activity android:name=".main.activities.AddCollActivity" />
         <activity android:name=".main.activities.AddLinkActivity" />
         <activity android:name=".main.activities.LinkDetailActivity" />

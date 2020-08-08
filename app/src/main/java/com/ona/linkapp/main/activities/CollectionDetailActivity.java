@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ona.linkapp.R;
 import com.ona.linkapp.adapters.LinkAdapter;
@@ -30,6 +32,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinkAdapter linkAdapter;
     private ImageButton back;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,17 @@ public class CollectionDetailActivity extends AppCompatActivity {
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipCallback);
         itemTouchhelper.attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(linkAdapter);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.bringToFront();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newLink = new Intent(CollectionDetailActivity.this, AddLinkActivity.class);
+                startActivity(newLink);
+            }
+        });
 
     }
 

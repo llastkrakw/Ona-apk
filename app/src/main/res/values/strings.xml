@@ -133,5 +133,15 @@
     <string name="customize">Customize</string>
     <string name="secure_connection">Secure connection</string>
     <string name="is_public">Is public</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign In</string>
+    <string name="please_signin_to_inter_on_our_app">Please SignIn to inter on our app</string>
+    <string name="username_or_email">Username or Email</string>
+    <string name="password">Password</string>
+    <string name="create_new_account">Create new Account ?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="please_signup_and_begin_handle_your_links">Please SignUp to access</string>
+    <string name="username_title">Username</string>
+    <string name="email_title">Email</string>
 
 </resources>
