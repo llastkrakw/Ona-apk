@@ -2,9 +2,11 @@ package com.ona.linkapp.loginAndRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,16 +49,18 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password_edt);
 
         signIn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View view) {
 
-                if(userName.getText().toString() != null && password.getText().toString() != null){
+                if(TextUtils.isEmpty(userName.getText().toString()) || TextUtils.isEmpty(password.getText().toString())){
 
-                    new LoginTask().execute(userName.getText().toString(), password.getText().toString());
+                    userName.setError("Is required", getDrawable(R.drawable.ic_warning));
+                    password.setError("Is required", getDrawable(R.drawable.ic_warning));
 
                 }
                 else {
-                    Toast.makeText(LoginActivity.this, "Empty Value !", Toast.LENGTH_LONG).show();
+                    new LoginTask().execute(userName.getText().toString(), password.getText().toString());
                 }
 /*                Intent main = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(main);*/
@@ -101,7 +105,35 @@ public class LoginActivity extends AppCompatActivity {
                 ObjectMapper usermapper = new ObjectMapper();
 
                 try {
+
                     List<User> users = usermapper.readValue(s, new TypeReference<List<User>>(){});
+
+                    User mUser = null;
+
+                    for(User user : users){
+
+                        if((user.getUsername().equals(name) || user.getEmail().equals(name) && user.getPassword().equals(pass))){
+
+                            mUser = user;
+
+                        }
+
+                    }
+
+                    if(mUser != null){
+
+                        Toast.makeText(LoginActivity.this, "Success !", Toast.LENGTH_SHORT).show();
+
+                        Intent main = new Intent(LoginActivity.this, MainActivity.class);
+                        main.putExtra("User", mUser);
+                        startActivity(main);
+
+                        LoginActivity.this.finish();
+
+                    }
+                    else {
+                        Toast.makeText(LoginActivity.this, "Access Denied !", Toast.LENGTH_SHORT).show();
+                    }
 
 
                 } catch (JsonProcessingException e) {

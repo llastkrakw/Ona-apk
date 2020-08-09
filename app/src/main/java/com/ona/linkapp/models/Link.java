@@ -6,8 +6,10 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Link extends UrlElement implements Parcelable {
 
     private int clicked;

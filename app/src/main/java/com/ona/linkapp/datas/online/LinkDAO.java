@@ -3,6 +3,7 @@ package com.ona.linkapp.datas.online;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ona.linkapp.apiUtils.Globals;
+import com.ona.linkapp.apiUtils.Repository;
 import com.ona.linkapp.models.Link;
 
 import java.io.IOException;
@@ -15,26 +16,18 @@ import okhttp3.Response;
 
 public class LinkDAO {
 
-    private static OkHttpClient client;
+    private Repository repository;
 
     public LinkDAO(){
-        client = new OkHttpClient();
-    }
 
-    private String run(String url) throws IOException {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        repository = new Repository();
 
-        try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
-        }
     }
 
 
     public String getLinks() throws IOException {
 
-        String linksJson = run(Globals.GET_LINKS_URL);
+        String linksJson = repository.get(Globals.GET_LINKS_URL);
 
         return linksJson;
 

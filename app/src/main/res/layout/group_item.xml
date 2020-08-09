@@ -38,7 +38,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:layout_marginEnd="10dp"
-        android:padding="10dp"
+        android:padding="5dp"
         android:background="@drawable/count_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/number"
             style="@style/OnboardingTitleStyle"
-            android:textSize="14sp"/>
+            android:textSize="12sp"/>
 
 
     </LinearLayout>

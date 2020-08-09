@@ -3,6 +3,7 @@ package com.ona.linkapp.main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +22,9 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,6 +35,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ona.linkapp.adapters.CollectionAdapter;
 import com.ona.linkapp.adapters.GroupAdapter;
 import com.ona.linkapp.adapters.LinkAdapter;
+import com.ona.linkapp.databinding.ActivityMainBinding;
 import com.ona.linkapp.datas.online.LinkDAO;
 import com.ona.linkapp.helpers.ImageResize;
 
@@ -46,11 +50,13 @@ import com.ona.linkapp.main.activities.AllLinkActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
 import com.ona.linkapp.models.Link;
+import com.ona.linkapp.models.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
     private CardView shimmer4;
     private CardView shimmer5;
     private CardView shimmer6;
+    private LinearLayout nothing_box1;
+    private LinearLayout nothing_box2;
 
     private ImageButton menu;
     private Swipe swipe;
@@ -77,13 +85,29 @@ public class MainActivity extends AppCompatActivity {
     private LinkDAO linkDAO = new LinkDAO();
 
 
+    private User user = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setUi();
+        user = getIntent().getParcelableExtra("User");
+        ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
+        binding.setUser(user);
 
+        container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
+        container.startShimmer();
+
+        shimmer1 = (CardView) findViewById(R.id.card_fake1);
+        shimmer2 = (CardView) findViewById(R.id.card_fake2);
+        shimmer3 = (CardView) findViewById(R.id.card_fake_link1);
+        shimmer4 = (CardView) findViewById(R.id.card_fake_link2);
+        shimmer5 = (CardView) findViewById(R.id.card_fake_link3);
+        shimmer6 = (CardView) findViewById(R.id.card_fake_link4);
+
+
+        setUi();
+        new LinkTask().execute(user.getId());
 
     }
 
@@ -107,24 +131,16 @@ public class MainActivity extends AppCompatActivity {
         circularImageView.setShadowGravity(CircularImageView.ShadowGravity.CENTER);
 
 
-        circularImageView.setImageBitmap(ImageResize.decodeSampledBitmapFromResource(MainActivity.this.getResources(),
-                R.drawable.image_profile, 60, 60));
+        //circularImageView.setImageBitmap(ImageResize.decodeSampledBitmapFromResource(MainActivity.this.getResources(),
+                //R.drawable.image_profile, 60, 60));
 
 
-        container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
-        container.startShimmer();
-
-        shimmer1 = (CardView) findViewById(R.id.card_fake1);
-        shimmer2 = (CardView) findViewById(R.id.card_fake2);
-        shimmer3 = (CardView) findViewById(R.id.card_fake_link1);
-        shimmer4 = (CardView) findViewById(R.id.card_fake_link2);
-        shimmer5 = (CardView) findViewById(R.id.card_fake_link3);
-        shimmer6 = (CardView) findViewById(R.id.card_fake_link4);
+        nothing_box1 = (LinearLayout) findViewById(R.id.nothing_box1);
+        nothing_box2 = (LinearLayout) findViewById(R.id.nothing_box2);
 
         circularImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hideShimmer();
             }
         });
 
@@ -206,41 +222,22 @@ public class MainActivity extends AppCompatActivity {
         linkRecyclerView = (RecyclerView) findViewById(R.id.link_recyclerView);
         collRecyclerView = (RecyclerView) findViewById(R.id.coll_recyclerView);
 
-        new Handler().postDelayed(new Runnable() {
+
+        SwipCallback swipCallback = new SwipCallback(MainActivity.this){
 
             @Override
-            public void run() {
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-                hideShimmer();
+                final int position = viewHolder.getAdapterPosition();
+                final Link item = linkAdapter.getData().get(position);
 
-                new LinkTask().execute();
-
-                SwipCallback swipCallback = new SwipCallback(MainActivity.this){
-
-                    @Override
-                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
-                        final int position = viewHolder.getAdapterPosition();
-                        final Link item = linkAdapter.getData().get(position);
-
-                        linkAdapter.removeItem(position);
-
-                    }
-                };
-                ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipCallback);
-                itemTouchhelper.attachToRecyclerView(linkRecyclerView);
-
-                final LayoutAnimationController controller =
-                        AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
-
-                collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
-                collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-                collRecyclerView.setLayoutAnimation(controller);
-                collRecyclerView.setAdapter(collAdapter);
-
+                linkAdapter.removeItem(position);
 
             }
-        }, 4000);
+        };
+
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipCallback);
+        itemTouchhelper.attachToRecyclerView(linkRecyclerView);
 
 
         link_view_all = (TextView) findViewById(R.id.link_view_all);
@@ -263,10 +260,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void hideShimmer(){
-
+    private void hideCollShimmer(){
         shimmer1.setVisibility(View.INVISIBLE);
         shimmer2.setVisibility(View.INVISIBLE);
+    }
+
+    private void showCollShimmer(){
+        shimmer1.setVisibility(View.VISIBLE);
+        shimmer2.setVisibility(View.VISIBLE);
+    }
+
+    private void hideShimmer(){
+
         shimmer3.setVisibility(View.INVISIBLE);
         shimmer4.setVisibility(View.INVISIBLE);
         shimmer5.setVisibility(View.INVISIBLE);
@@ -276,8 +281,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showShimmer(){
-        shimmer1.setVisibility(View.VISIBLE);
-        shimmer2.setVisibility(View.VISIBLE);
         shimmer3.setVisibility(View.VISIBLE);
         shimmer4.setVisibility(View.VISIBLE);
         shimmer5.setVisibility(View.VISIBLE);
@@ -313,32 +316,77 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
 
+   private void updateUiCol(List<Collection> collections){
+
+
+       if(collections.size() == 0){
+
+           nothing_box1.setVisibility(View.VISIBLE);
+
+       }
+       else {
+
+           final LayoutAnimationController controller =
+                   AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
+
+           collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
+           collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+           collRecyclerView.setLayoutAnimation(controller);
+           collRecyclerView.setAdapter(collAdapter);
+
+       }
+
+   }
+
+
     private void updateUiLink(List<Link> links){
 
-        linkRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+       Toast.makeText(MainActivity.this, "Finnnnn", Toast.LENGTH_LONG).show();
 
-        final LayoutAnimationController controller =
-                AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
+       if(links.size() == 0){
 
-        linkAdapter = new LinkAdapter(MainActivity.this, links);
-        linkRecyclerView.setLayoutAnimation(controller);
-        linkRecyclerView.setAdapter(linkAdapter);
+           nothing_box2.setVisibility(View.VISIBLE);
+
+       }
+       else {
+
+           nothing_box2.setVisibility(View.GONE);
+
+           linkRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+           final LayoutAnimationController controller =
+                   AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
+
+           linkAdapter = new LinkAdapter(MainActivity.this, links);
+           linkRecyclerView.setLayoutAnimation(controller);
+           linkRecyclerView.setAdapter(linkAdapter);
+
+       }
 
     }
 
 
-    class LinkTask extends AsyncTask<Void, Void, String> {
+    class LinkTask extends AsyncTask<String, Void, String> {
 
+        String userId;
         @Override
-        protected String doInBackground(Void... voids) {
+        protected String doInBackground(String... strings) {
+
+            userId = strings[0];
 
             try {
                 return linkDAO.getLinks();
             }catch (IOException e){
                 e.printStackTrace();
             }
-
             return null;
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showShimmer();
         }
 
         @Override
@@ -350,8 +398,21 @@ public class MainActivity extends AppCompatActivity {
                 ObjectMapper linkMapper = new ObjectMapper();
 
                 try {
+
                     List<Link> links = linkMapper.readValue(s, new TypeReference<List<Link>>(){});
-                    updateUiLink(links);
+                    List<Link>  userLinks = new ArrayList<>();
+
+                    for(Link link : links){
+
+                        if(link.getAuthor().equals(userId)){
+                            userLinks.add(link);
+                        }
+
+                    }
+
+                    hideShimmer();
+                    updateUiLink(userLinks);
+
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
@@ -360,6 +421,26 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    class CollectionTask extends AsyncTask<String, Void, String>{
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+    }
+
 
     public List<Link> createFakeLink(){
 

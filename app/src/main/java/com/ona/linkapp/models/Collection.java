@@ -3,10 +3,12 @@ package com.ona.linkapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class  Collection extends UrlElement implements Parcelable {
 
     private List<Link> links;

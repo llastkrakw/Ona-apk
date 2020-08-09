@@ -1,11 +1,21 @@
 package com.ona.linkapp.models;
 
+import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.View;
+
+import androidx.databinding.BindingAdapter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +43,17 @@ public class User implements Parcelable {
         this.links = links;
         this.groups = groups;
         this.createAt = createAt;
+    }
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.links = new ArrayList<>();
+        this.collections = new ArrayList<>();
+        this.groups = new ArrayList<>();
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy:HH:mm:ss");
+        this.createAt = new Date();
     }
 
     protected User(Parcel in) {
@@ -146,5 +167,14 @@ public class User implements Parcelable {
         parcel.writeString(username);
         parcel.writeString(password);
         parcel.writeString(email);
+    }
+
+    @BindingAdapter({"android:src"})
+    public static void LoadImage(CircularImageView view, String email){
+
+        Picasso.get().
+                load((Uri.parse("https://unavatar.now.sh/").buildUpon().appendPath(email).toString()))
+        .into(view);
+
     }
 }

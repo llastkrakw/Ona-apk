@@ -32,6 +32,7 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,11 +48,11 @@
                 style="@style/ShortTextStyle"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
-                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                 android:background="@drawable/text_ripple"
                 android:focusable="true"
                 android:clickable="true"
-                android:drawablePadding="10dp"/>
+                android:drawablePadding="10dp"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
         </LinearLayout>
 
@@ -61,18 +62,33 @@
             android:layout_marginTop="12dp"
             android:background="@color/textColorGrey"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/browse"
-            style="@style/NavTextStyle"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:drawableStart="@drawable/ic_folder"
-            android:drawablePadding="8dp"
-            android:background="@drawable/text_ripple"
+            android:orientation="horizontal"
+            android:clickable="true"
             android:focusable="true"
-            android:clickable="true"/>
+            android:background="@drawable/item_ripple">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/browse"
+                style="@style/NavTextStyle"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="8dp"
+                app:drawableStartCompat="@drawable/ic_folder" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/item_ripple">
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,11 +97,18 @@
             style="@style/NavTextStyle"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_fire_element"
             android:drawablePadding="8dp"
-            android:background="@drawable/text_ripple"
-            android:focusable="true"
-            android:clickable="true"/>
+            app:drawableStartCompat="@drawable/ic_fire_element" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/item_ripple">
 
         <TextView
             android:layout_width="wrap_content"
@@ -94,11 +117,20 @@
             style="@style/NavTextStyle"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_language"
             android:drawablePadding="8dp"
-            android:background="@drawable/text_ripple"
-            android:focusable="true"
-            android:clickable="true"/>
+            app:drawableStartCompat="@drawable/ic_language" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/item_ripple">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,11 +139,18 @@
             style="@style/NavTextStyle"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_settings_filled"
             android:drawablePadding="8dp"
-            android:background="@drawable/text_ripple"
-            android:focusable="true"
-            android:clickable="true"/>
+            app:drawableStartCompat="@drawable/ic_settings_filled" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/item_ripple">
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,11 +159,18 @@
             style="@style/NavTextStyle"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_info"
             android:drawablePadding="8dp"
-            android:background="@drawable/text_ripple"
-            android:focusable="true"
-            android:clickable="true"/>
+            app:drawableStartCompat="@drawable/ic_info" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/item_ripple">
 
         <TextView
             android:layout_width="wrap_content"
@@ -133,11 +179,19 @@
             style="@style/NavTextStyle"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_help"
             android:drawablePadding="8dp"
-            android:background="@drawable/text_ripple"
-            android:focusable="true"
-            android:clickable="true"/>
+            app:drawableStartCompat="@drawable/ic_help" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/item_ripple">
 
         <TextView
             android:layout_width="wrap_content"
@@ -146,11 +200,11 @@
             style="@style/NavTextStyle"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_add_user_male"
             android:drawablePadding="8dp"
-            android:background="@drawable/text_ripple"
-            android:focusable="true"
-            android:clickable="true"/>
+            app:drawableStartCompat="@drawable/ic_add_user_male" />
+
+
+    </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -165,8 +219,8 @@
             style="@style/NavTextStyle"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:drawableEnd="@drawable/ic_group"
-            android:drawablePadding="8dp" />
+            android:drawablePadding="8dp"
+            app:drawableEndCompat="@drawable/ic_group" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/group_recycler"

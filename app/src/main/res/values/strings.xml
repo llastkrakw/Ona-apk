@@ -143,5 +143,6 @@
     <string name="please_signup_and_begin_handle_your_links">Please SignUp to access</string>
     <string name="username_title">Username</string>
     <string name="email_title">Email</string>
+    <string name="nothing_found">Nothing Found !</string>
 
 </resources>
