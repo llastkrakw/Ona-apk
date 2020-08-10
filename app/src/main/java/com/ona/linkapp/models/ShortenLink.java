@@ -5,11 +5,19 @@ import android.os.Parcelable;
 
 public class ShortenLink implements Parcelable {
 
+    private String id;
     private Link link;
     private String hash;
     private String linkShorten;
 
     public ShortenLink(){}
+
+    public ShortenLink(String id, Link link, String hash, String linkShorten) {
+        this.id = id;
+        this.link = link;
+        this.hash = hash;
+        this.linkShorten = linkShorten;
+    }
 
     public ShortenLink(Link link, String hash, String linkShorten) {
         this.link = link;
@@ -18,6 +26,7 @@ public class ShortenLink implements Parcelable {
     }
 
     protected ShortenLink(Parcel in) {
+        id = in.readString();
         link = in.readParcelable(Link.class.getClassLoader());
         hash = in.readString();
         linkShorten = in.readString();
@@ -59,6 +68,13 @@ public class ShortenLink implements Parcelable {
         this.linkShorten = linkShorten;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @Override
     public int describeContents() {
@@ -67,6 +83,7 @@ public class ShortenLink implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
         parcel.writeParcelable(link, i);
         parcel.writeString(hash);
         parcel.writeString(linkShorten);

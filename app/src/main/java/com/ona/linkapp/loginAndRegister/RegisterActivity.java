@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -115,9 +116,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             if(s != null){
 
+                Log.d("value", s);
+
                 ObjectMapper mapper = new ObjectMapper();
                 try {
                     User user = mapper.readValue(s, User.class);
+                    if(TextUtils.isEmpty(user.getId())){
+                        Log.d("value", "Tes noyaux");
+                    }
                     Intent main = new Intent(RegisterActivity.this, MainActivity.class);
                     main.putExtra("User", user);
                     startActivity(main);

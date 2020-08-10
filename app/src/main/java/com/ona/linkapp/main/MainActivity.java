@@ -15,6 +15,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pwittchen.swipe.library.rx2.Swipe;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,6 +39,7 @@ import com.ona.linkapp.adapters.GroupAdapter;
 import com.ona.linkapp.adapters.LinkAdapter;
 import com.ona.linkapp.databinding.ActivityMainBinding;
 import com.ona.linkapp.datas.online.LinkDAO;
+import com.ona.linkapp.datas.online.UserDao;
 import com.ona.linkapp.helpers.ImageResize;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -54,6 +57,7 @@ import com.ona.linkapp.models.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView coll_view_all;
 
     private LinkDAO linkDAO = new LinkDAO();
+    private UserDao userDao = new UserDao();
+
+    private LayoutAnimationController controller;
 
 
     private User user = null;
@@ -95,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         binding.setUser(user);
 
+        controller =
+                AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
         container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
         container.startShimmer();
 
@@ -108,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         setUi();
         new LinkTask().execute(user.getId());
+        new CollectionTask().execute(user.getId());
 
     }
 
@@ -210,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*        swipe = new Swipe();
+/*      swipe = new Swipe();
         swipe.setListener(new SimpleSwipeListener() {
             @Override
             public boolean onSwipedRight(MotionEvent event) {
@@ -221,6 +231,9 @@ public class MainActivity extends AppCompatActivity {
 
         linkRecyclerView = (RecyclerView) findViewById(R.id.link_recyclerView);
         collRecyclerView = (RecyclerView) findViewById(R.id.coll_recyclerView);
+
+        linkRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
 
         SwipCallback swipCallback = new SwipCallback(MainActivity.this){
@@ -326,11 +339,7 @@ public class MainActivity extends AppCompatActivity {
        }
        else {
 
-           final LayoutAnimationController controller =
-                   AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
-
            collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
-           collRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
            collRecyclerView.setLayoutAnimation(controller);
            collRecyclerView.setAdapter(collAdapter);
 
@@ -352,11 +361,6 @@ public class MainActivity extends AppCompatActivity {
 
            nothing_box2.setVisibility(View.GONE);
 
-           linkRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
-           final LayoutAnimationController controller =
-                   AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
-
            linkAdapter = new LinkAdapter(MainActivity.this, links);
            linkRecyclerView.setLayoutAnimation(controller);
            linkRecyclerView.setAdapter(linkAdapter);
@@ -375,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
             userId = strings[0];
 
             try {
-                return linkDAO.getLinks();
+                return userDao.getUser(userId);
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -395,20 +399,15 @@ public class MainActivity extends AppCompatActivity {
 
             if(s != null){
 
-                ObjectMapper linkMapper = new ObjectMapper();
+                ObjectMapper userMapper = new ObjectMapper();
 
                 try {
 
-                    List<Link> links = linkMapper.readValue(s, new TypeReference<List<Link>>(){});
-                    List<Link>  userLinks = new ArrayList<>();
+                    JsonNode jsonNode = userMapper.readValue(s, JsonNode.class);
+                    JsonNode links = jsonNode.get("links");
+                    List<Link>  userLinks = userMapper.readValue(links.toString(), new TypeReference<List<Link>>(){});
 
-                    for(Link link : links){
 
-                        if(link.getAuthor().equals(userId)){
-                            userLinks.add(link);
-                        }
-
-                    }
 
                     hideShimmer();
                     updateUiLink(userLinks);
@@ -424,20 +423,52 @@ public class MainActivity extends AppCompatActivity {
 
     class CollectionTask extends AsyncTask<String, Void, String>{
 
-
+        String userId;
         @Override
         protected String doInBackground(String... strings) {
+
+            userId = strings[0];
+
+            try {
+                return userDao.getUser(userId);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
             return null;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            showCollShimmer();
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
+            if(s != null){
+
+                ObjectMapper userMapper = new ObjectMapper();
+
+                try {
+
+                    JsonNode jsonNode = userMapper.readValue(s, JsonNode.class);
+                    JsonNode collections = jsonNode.get("collections");
+                    List<Collection>  userCol = userMapper.readValue(collections.toString(), new TypeReference<List<Collection>>(){});
+
+
+
+                    hideCollShimmer();
+                    updateUiCol(userCol);
+
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
         }
     }
 

@@ -41,5 +41,6 @@ public class Globals {
 
     public static final String GET_USERS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("users").toString();
     public static final String POST_USERS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("users").appendPath("user").toString();
+    public static final String LOGIN_USERS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("login").toString();
 
 }

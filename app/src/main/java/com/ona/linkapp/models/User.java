@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.databinding.BindingAdapter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +24,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Parcelable {
 
-    private String id;
+    private String _id;
     private String username;
     private String password;
     private String email;
@@ -45,6 +47,17 @@ public class User implements Parcelable {
         this.createAt = createAt;
     }
 
+    public User(String id, String username, String password, String email, List<Collection> collections, List<Link> links, List<Group> groups, Date createAt) {
+        this._id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.collections = collections;
+        this.links = links;
+        this.groups = groups;
+        this.createAt = createAt;
+    }
+
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
@@ -57,7 +70,7 @@ public class User implements Parcelable {
     }
 
     protected User(Parcel in) {
-        id = in.readString();
+        _id = in.readString();
         username = in.readString();
         password = in.readString();
         email = in.readString();
@@ -77,12 +90,12 @@ public class User implements Parcelable {
 
     @JsonProperty("_id")
     public String getId() {
-        return id;
+        return _id;
     }
 
     @JsonProperty("_id")
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     @JsonProperty("username")
@@ -163,7 +176,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(id);
+        parcel.writeString(_id);
         parcel.writeString(username);
         parcel.writeString(password);
         parcel.writeString(email);

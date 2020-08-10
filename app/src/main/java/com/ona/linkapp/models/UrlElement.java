@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UrlElement implements Parcelable {
 
 
-    private String id;
+    private String _id;
     private String title;
     private String description;
     private String author;
@@ -36,7 +36,7 @@ public class UrlElement implements Parcelable {
     }
 
     public UrlElement(String id, String title, String description, String author, String createdAt, String url, int likes) {
-        this.id = id;
+        this._id = id;
         this.title = title;
         this.description = description;
         this.author = author;
@@ -46,7 +46,7 @@ public class UrlElement implements Parcelable {
     }
 
     protected UrlElement(Parcel in) {
-        id = in.readString();
+        _id = in.readString();
         title = in.readString();
         description = in.readString();
         author = in.readString();
@@ -69,12 +69,12 @@ public class UrlElement implements Parcelable {
 
     @JsonProperty("_id")
     public String getId() {
-        return id;
+        return _id;
     }
 
     @JsonProperty("_id")
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     @JsonProperty("title")
@@ -144,7 +144,7 @@ public class UrlElement implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(id);
+        parcel.writeString(_id);
         parcel.writeString(title);
         parcel.writeString(description);
         parcel.writeString(author);
