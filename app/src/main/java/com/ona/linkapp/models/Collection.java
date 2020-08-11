@@ -3,16 +3,21 @@ package com.ona.linkapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonFilter("colFilter")
 public class  Collection extends UrlElement implements Parcelable {
 
     private List<Link> links;
     private Boolean visibility;
+
+
+    public Collection(){}
 
 
     public Collection(String title, String description, String author, String createAt, String url, List<Link> links, Boolean visibility) {
@@ -24,6 +29,10 @@ public class  Collection extends UrlElement implements Parcelable {
     public Collection(String title, String description, String author, String createAt, List<Link> links) {
         super(title, description, author, createAt);
         this.links = links;
+    }
+
+    public Collection(String title, String description, String author){
+        super(title, description, author);
     }
 
     public Collection(String id, String title, String description, String author, String createAt, String url, int likes, List<Link> links, Boolean visibility) {
@@ -76,7 +85,6 @@ public class  Collection extends UrlElement implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
         parcel.writeList(links);
         parcel.writeByte((byte) (visibility ? 1 : 0));
     }

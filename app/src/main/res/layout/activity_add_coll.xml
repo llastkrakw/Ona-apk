@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:labelFor="@id/desc_edt"
         android:text="@string/description"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,53 +56,6 @@
         />
 
 
-    <TextView
-        android:id="@+id/shorten"
-        style="@style/NavTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/short_edt"
-        android:text="@string/shorten"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/desc_edt" />
-
-
-    <LinearLayout
-        android:id="@+id/short_box"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/shorten"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"
-        android:padding="0dp">
-
-        <EditText
-            android:id="@+id/short_edt"
-            style="@style/edit_text"
-            android:layout_width="210dp"
-            android:autofillHints="@string/copyright"
-            android:inputType="text"
-            android:drawableStart="@drawable/ic_link_pink"
-            android:padding="10dp"
-            android:layout_marginTop="0dp"
-            />
-
-        <ImageButton
-            android:id="@+id/copy"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_copy"
-            android:contentDescription="@string/copyright"
-            android:src="@drawable/ic_copy"
-            />
-
-    </LinearLayout>
-
-
 
 
     <TextView
@@ -111,10 +64,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/customize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/short_box" />
+        app:layout_constraintTop_toBottomOf="@id/desc_edt" />
 
 
     <RelativeLayout
@@ -168,11 +121,12 @@
             style="@style/edit_text"
             android:layout_width="190dp"
             android:layout_height="40dp"
-            android:autofillHints="@string/copyright"
-            android:inputType="text"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="60dp"/>
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="33dp"
+            android:autofillHints="@string/copyright"
+            android:inputType="text" />
 
     </RelativeLayout>
 
@@ -224,7 +178,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

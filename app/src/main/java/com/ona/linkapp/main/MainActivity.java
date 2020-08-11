@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -44,6 +45,7 @@ import com.ona.linkapp.helpers.ImageResize;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ona.linkapp.R;
+import com.ona.linkapp.helpers.Session;
 import com.ona.linkapp.helpers.SwipCallback;
 import com.ona.linkapp.main.activities.AddCollActivity;
 import com.ona.linkapp.main.activities.AddGroupActivity;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private CardView shimmer6;
     private LinearLayout nothing_box1;
     private LinearLayout nothing_box2;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private ImageButton menu;
     private Swipe swipe;
@@ -93,14 +96,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     private User user = null;
+    private Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        user = getIntent().getParcelableExtra("User");
-        ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
-        binding.setUser(user);
+        session = new Session(MainActivity.this);
+        try {
+            user = session.getUser();
+            ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
+            binding.setUser(user);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
 
         controller =
                 AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
@@ -271,6 +281,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        swipeRefreshLayout  = (SwipeRefreshLayout) findViewById(R.id.refresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                hideAll();
+
+                new LinkTask().execute(user.getId());
+                new CollectionTask().execute(user.getId());
+
+                swipeRefreshLayout.setRefreshing(false);
+
+            }
+        });
     }
 
     private void hideCollShimmer(){
@@ -339,7 +364,9 @@ public class MainActivity extends AppCompatActivity {
        }
        else {
 
-           collAdapter = new CollectionAdapter(createFakeCollection(), MainActivity.this);
+           nothing_box1.setVisibility(View.GONE);
+
+           collAdapter = new CollectionAdapter(collections, MainActivity.this);
            collRecyclerView.setLayoutAnimation(controller);
            collRecyclerView.setAdapter(collAdapter);
 
@@ -366,6 +393,22 @@ public class MainActivity extends AppCompatActivity {
            linkRecyclerView.setAdapter(linkAdapter);
 
        }
+
+    }
+
+    public void showAll(){
+
+       collRecyclerView.setVisibility(View.VISIBLE);
+       linkRecyclerView.setVisibility(View.VISIBLE);
+
+    }
+
+    public void hideAll(){
+
+        collRecyclerView.setVisibility(View.INVISIBLE);
+        linkRecyclerView.setVisibility(View.INVISIBLE);
+        nothing_box1.setVisibility(View.INVISIBLE);
+        nothing_box2.setVisibility(View.INVISIBLE);
 
     }
 
@@ -410,6 +453,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     hideShimmer();
+                    showAll();
                     updateUiLink(userLinks);
 
                 } catch (JsonProcessingException e) {
@@ -451,6 +495,8 @@ public class MainActivity extends AppCompatActivity {
             if(s != null){
 
                 ObjectMapper userMapper = new ObjectMapper();
+
+                Log.d("value", s);
 
                 try {
 

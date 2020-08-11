@@ -3,6 +3,7 @@ package com.ona.linkapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UrlElement implements Parcelable {
@@ -28,12 +29,14 @@ public class UrlElement implements Parcelable {
         this.url = url;
     }
 
-    public UrlElement(String title, String description, String author, String createdAt) {
+    public UrlElement(String title, String description, String author){
+
         this.title = title;
         this.description = description;
         this.author = author;
-        this.createAt = createdAt;
+
     }
+
 
     public UrlElement(String id, String title, String description, String author, String createdAt, String url, int likes) {
         this._id = id;
@@ -66,6 +69,13 @@ public class UrlElement implements Parcelable {
             return new UrlElement[size];
         }
     };
+
+    public UrlElement(String title, String description, String url, String author) {
+        this.title = title;
+        this.description = description;
+        this.author = author;
+        this.url = url;
+    }
 
     @JsonProperty("_id")
     public String getId() {

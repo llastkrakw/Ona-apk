@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -124,9 +125,9 @@ public class RegisterActivity extends AppCompatActivity {
                     if(TextUtils.isEmpty(user.getId())){
                         Log.d("value", "Tes noyaux");
                     }
-                    Intent main = new Intent(RegisterActivity.this, MainActivity.class);
-                    main.putExtra("User", user);
-                    startActivity(main);
+                    Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(login);
+                    Toast.makeText(RegisterActivity.this, "Connect with your new account", Toast.LENGTH_LONG).show();
                     RegisterActivity.this.finish();
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();

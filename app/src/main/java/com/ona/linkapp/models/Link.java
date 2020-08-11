@@ -6,10 +6,12 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonFilter("linkFilter")
 public class Link extends UrlElement implements Parcelable {
 
     private int clicked;
@@ -43,6 +45,10 @@ public class Link extends UrlElement implements Parcelable {
         this.clicked = clicked;
         this.shorten_url = shorten_url;
         this.visibility = visibility;
+    }
+
+    public Link(String title, String description, String url, String author) {
+        super(title, description, url, author);
     }
 
     public Link(String title, String description,  String author, String createAt, int clicked) {

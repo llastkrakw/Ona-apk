@@ -1,6 +1,7 @@
 package com.ona.linkapp.loginAndRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,7 +19,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ona.linkapp.R;
+import com.ona.linkapp.databinding.ActivityMainBinding;
 import com.ona.linkapp.datas.online.UserDao;
+import com.ona.linkapp.helpers.Session;
 import com.ona.linkapp.main.MainActivity;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.models.User;
@@ -33,11 +36,14 @@ public class LoginActivity extends AppCompatActivity {
     private UserDao userDao = new UserDao();
     private TextView userName;
     private TextView password;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        session = new Session(LoginActivity.this);
 
         updateUi();
     }
@@ -115,7 +121,14 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Success !", Toast.LENGTH_SHORT).show();
 
                         Intent main = new Intent(LoginActivity.this, MainActivity.class);
-                        main.putExtra("User", mUser);
+
+                        try {
+                            session.setUser(mUser);
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+
+                        session.setUser(mUser);
                         startActivity(main);
 
                         LoginActivity.this.finish();

@@ -24,5 +24,13 @@ public class CollectionDAO {
 
     }
 
+    public String addCol(String collection) throws IOException {
+
+        String colJson = repository.post(Globals.POST_COLLECTIONS_URL, collection);
+
+        return colJson;
+
+    }
+
 
 }

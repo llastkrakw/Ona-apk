@@ -23,6 +23,7 @@ public class Globals {
     * */
 
     public static final String GET_LINKS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("links").toString();
+    public static final String POST_LINKS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("links").appendPath("link").toString();
 
     /*
      *
@@ -31,6 +32,8 @@ public class Globals {
      * */
 
     public static final String GET_COLLECTIONS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("collections").toString();
+    public static final String POST_COLLECTIONS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("collections").appendPath("collection").toString();
+
 
 
     /*

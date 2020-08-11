@@ -33,4 +33,12 @@ public class LinkDAO {
 
     }
 
+    public String addLink(String link) throws IOException {
+
+        String linkJson = repository.post(Globals.POST_LINKS_URL, link);
+
+        return linkJson;
+
+    }
+
 }
