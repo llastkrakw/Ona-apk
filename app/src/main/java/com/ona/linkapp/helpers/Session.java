@@ -28,9 +28,9 @@ public class Session {
 
         SimpleFilterProvider filterProvider = new SimpleFilterProvider();
         filterProvider.addFilter("linkFilter",
-                SimpleBeanPropertyFilter.filterOutAllExcept("title", "description", "url", "author", "createdAt", "visibility", "_id"));
+                SimpleBeanPropertyFilter.filterOutAllExcept("title", "description", "url", "author", "createAt", "visibility", "_id"));
 
-        filterProvider.addFilter("colFilter", SimpleBeanPropertyFilter.filterOutAllExcept("title", "description", "url", "author", "createdAt", "visibility","links", "_id"));
+        filterProvider.addFilter("colFilter", SimpleBeanPropertyFilter.filterOutAllExcept("title", "description", "url", "author", "createAt", "visibility","links", "_id"));
 
         mapper.setFilterProvider(filterProvider);
 

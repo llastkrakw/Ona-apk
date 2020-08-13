@@ -17,7 +17,8 @@
         android:roundIcon="@drawable/ic_random_box2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".loginAndRegister.RegisterActivity"/>
+        <activity android:name=".main.activities.AddLinkToCollectionActivity"></activity>
+        <activity android:name=".loginAndRegister.RegisterActivity" />
         <activity android:name=".loginAndRegister.LoginActivity" />
         <activity android:name=".main.activities.SearchActivity" />
         <activity android:name=".main.activities.AddGroupActivity" />

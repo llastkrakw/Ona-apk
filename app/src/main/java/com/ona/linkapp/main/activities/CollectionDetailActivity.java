@@ -2,6 +2,7 @@ package com.ona.linkapp.main.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,14 +15,20 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ona.linkapp.R;
 import com.ona.linkapp.adapters.LinkAdapter;
+import com.ona.linkapp.databinding.ActivityCollectionDetailBinding;
+import com.ona.linkapp.databinding.ActivityMainBinding;
 import com.ona.linkapp.helpers.ImageResize;
+import com.ona.linkapp.helpers.Session;
 import com.ona.linkapp.helpers.SwipCallback;
 import com.ona.linkapp.main.MainActivity;
+import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Link;
+import com.ona.linkapp.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +40,31 @@ public class CollectionDetailActivity extends AppCompatActivity {
     private LinkAdapter linkAdapter;
     private ImageButton back;
     private FloatingActionButton fab;
+    private Collection collection;
+
+    private User user = null;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_detail);
+
+        session = new Session(CollectionDetailActivity.this);
+        try {
+            user = session.getUser();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        collection = getIntent().getParcelableExtra("Collection");
+        
+        if(collection != null)
+            if (collection.getLinks() == null)
+                collection.setLinks(new ArrayList<Link>());
+
+        ActivityCollectionDetailBinding binding = DataBindingUtil.setContentView(CollectionDetailActivity.this, R.layout.activity_collection_detail);
+        binding.setCollection(collection);
 
         updateUi();
     }
@@ -81,7 +108,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
         recyclerView.setLayoutAnimation(controller);
         recyclerView.setLayoutManager(new LinearLayoutManager(CollectionDetailActivity.this));
 
-        linkAdapter = new LinkAdapter(CollectionDetailActivity.this, createFakeLink());
+        linkAdapter = new LinkAdapter(CollectionDetailActivity.this, collection.getLinks());
         SwipCallback swipCallback = new SwipCallback(CollectionDetailActivity.this){
 
             @Override
@@ -94,6 +121,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
             }
         };
+
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipCallback);
         itemTouchhelper.attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(linkAdapter);
@@ -111,31 +139,4 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
     }
 
-
-    public List<Link> createFakeLink(){
-
-        List<Link> links = new ArrayList<>();
-
-        Link link1 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link2 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link3 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link4 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link5 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link6 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link7 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link8 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-
-
-        links.add(link1);
-        links.add(link2);
-        links.add(link3);
-        links.add(link4);
-        links.add(link5);
-        links.add(link6);
-        links.add(link7);
-        links.add(link8);
-
-        return links;
-
-    }
 }

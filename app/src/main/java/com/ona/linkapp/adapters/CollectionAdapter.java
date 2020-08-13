@@ -17,7 +17,9 @@ import com.ona.linkapp.main.activities.CollectionDetailActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -108,6 +110,8 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         @Override
         public void onClick(View view) {
             Intent detailsIntent = new Intent(context, CollectionDetailActivity.class);
+            Collection collection = collections.get(getAdapterPosition());
+            detailsIntent.putExtra("Collection", collection);
             context.startActivity(detailsIntent);
         }
     }

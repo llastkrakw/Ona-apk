@@ -42,6 +42,7 @@ public class  Collection extends UrlElement implements Parcelable {
     }
 
     protected Collection(Parcel in) {
+        super(in);
         in.readList(links, Link.class.getClassLoader());
         visibility = in.readByte() != 0;
     }
@@ -78,6 +79,7 @@ public class  Collection extends UrlElement implements Parcelable {
         this.visibility = visibility;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -85,6 +87,7 @@ public class  Collection extends UrlElement implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
         parcel.writeList(links);
         parcel.writeByte((byte) (visibility ? 1 : 0));
     }

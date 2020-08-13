@@ -4,7 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class UrlElement implements Parcelable {
 
@@ -48,7 +55,7 @@ public class UrlElement implements Parcelable {
         this.likes = likes;
     }
 
-    protected UrlElement(Parcel in) {
+    public UrlElement(Parcel in) {
         _id = in.readString();
         title = in.readString();
         description = in.readString();
@@ -107,9 +114,23 @@ public class UrlElement implements Parcelable {
         this.author = author;
     }
 
+
     @JsonProperty("createAt")
     public String getCreateAt() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+        Date date = null;
+
+        try {
+            date = formatter.parse(createAt);
+            String formattedDateString = formatter.format(date);
+            return formattedDateString;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         return createAt;
+
     }
 
     @JsonProperty("createAt")
@@ -146,6 +167,7 @@ public class UrlElement implements Parcelable {
     public void setLikes(int likes) {
         this.likes = likes;
     }
+
 
     @Override
     public int describeContents() {
