@@ -58,7 +58,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
         }
 
         collection = getIntent().getParcelableExtra("Collection");
-        
+
         if(collection != null)
             if (collection.getLinks() == null)
                 collection.setLinks(new ArrayList<Link>());
