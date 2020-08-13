@@ -175,24 +175,9 @@ public class AddLinkActivity extends AppCompatActivity {
 
             if(s != null){
 
-                SimpleFilterProvider filterProvider = new SimpleFilterProvider();
-                filterProvider.addFilter("linkFilter",
-                        SimpleBeanPropertyFilter.filterOutAllExcept());
-
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.setFilterProvider(filterProvider);
-                try {
-                    Link link = mapper.readValue(s, Link.class);
-                    List<Link> oldLinks = user.getLinks();
-                    oldLinks.add(link);
-                    user.setLinks(oldLinks);
-                    session.setUser(user);
-
                     Intent intent = new Intent(AddLinkActivity.this, MainActivity.class);
                     startActivity(intent);
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
+
 
             }
         }

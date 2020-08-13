@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -135,24 +136,8 @@ public class AddCollActivity extends AppCompatActivity {
 
             if(s != null){
 
-                SimpleFilterProvider filterProvider = new SimpleFilterProvider();
-                filterProvider.addFilter("colFilter",
-                        SimpleBeanPropertyFilter.filterOutAllExcept());
-
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.setFilterProvider(filterProvider);
-                try {
-                    Collection collection = mapper.readValue(s, Collection.class);
-                    List<Collection> oldCols = user.getCollections();
-                    oldCols.add(collection);
-                    user.setCollections(oldCols);
-                    session.setUser(user);
-
                     Intent intent = new Intent(AddCollActivity.this, MainActivity.class);
                     startActivity(intent);
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
 
             }
         }

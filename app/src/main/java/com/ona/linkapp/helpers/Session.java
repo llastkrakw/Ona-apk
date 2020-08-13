@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.usb.UsbDevice;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,17 +28,14 @@ public class Session {
 
         SimpleFilterProvider filterProvider = new SimpleFilterProvider();
         filterProvider.addFilter("linkFilter",
-                SimpleBeanPropertyFilter.filterOutAllExcept());
+                SimpleBeanPropertyFilter.filterOutAllExcept("title", "description", "url", "author", "createdAt", "visibility", "_id"));
 
-        SimpleFilterProvider filterProvider2 = new SimpleFilterProvider();
-        filterProvider.addFilter("colFilter",
-                SimpleBeanPropertyFilter.filterOutAllExcept());
-
+        filterProvider.addFilter("colFilter", SimpleBeanPropertyFilter.filterOutAllExcept("title", "description", "url", "author", "createdAt", "visibility","links", "_id"));
 
         mapper.setFilterProvider(filterProvider);
-        mapper.setFilterProvider(filterProvider2);
 
         String userJson = mapper.writeValueAsString(user);
+        Log.d("Value", userJson);
         prefs.edit().putString("User", userJson).apply();
 
     }

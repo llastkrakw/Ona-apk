@@ -377,8 +377,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUiLink(List<Link> links){
 
-       Toast.makeText(MainActivity.this, "Finnnnn", Toast.LENGTH_LONG).show();
-
        if(links.size() == 0){
 
            nothing_box2.setVisibility(View.VISIBLE);
@@ -446,15 +444,13 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
 
-                    JsonNode jsonNode = userMapper.readValue(s, JsonNode.class);
-                    JsonNode links = jsonNode.get("links");
-                    List<Link>  userLinks = userMapper.readValue(links.toString(), new TypeReference<List<Link>>(){});
+                    User mUser = userMapper.readValue(s, User.class);
 
-
+                    session.setUser(mUser);
 
                     hideShimmer();
                     showAll();
-                    updateUiLink(userLinks);
+                    updateUiLink(mUser.getLinks());
 
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
@@ -500,14 +496,13 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
 
-                    JsonNode jsonNode = userMapper.readValue(s, JsonNode.class);
-                    JsonNode collections = jsonNode.get("collections");
-                    List<Collection>  userCol = userMapper.readValue(collections.toString(), new TypeReference<List<Collection>>(){});
+                    User mUser = userMapper.readValue(s, User.class);
 
-
+                    session.setUser(mUser);
 
                     hideCollShimmer();
-                    updateUiCol(userCol);
+                    showAll();
+                    updateUiCol(mUser.getCollections());
 
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();

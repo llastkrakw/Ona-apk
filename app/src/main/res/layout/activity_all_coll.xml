@@ -107,6 +107,7 @@
                 android:drawablePadding="8dp"/>
 
             <TextView
+                android:id="@+id/your_col_number"
                 style="@style/MainTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,6 +131,7 @@
                 android:drawablePadding="8dp"/>
 
             <TextView
+                android:id="@+id/download_col_number"
                 style="@style/MainTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -2,6 +2,7 @@ package com.ona.linkapp.main.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,13 +12,19 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ona.linkapp.R;
 import com.ona.linkapp.adapters.CollectionAdapter;
 import com.ona.linkapp.adapters.LinkAdapter;
+import com.ona.linkapp.databinding.ActivityMainBinding;
+import com.ona.linkapp.helpers.Session;
 import com.ona.linkapp.helpers.SwipCallback;
 import com.ona.linkapp.main.MainActivity;
+import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Link;
+import com.ona.linkapp.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +34,47 @@ public class AllLinkActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinkAdapter linkAdapter;
     private ImageButton back;
+    private TextView your_link_number;
+    private TextView download_link_number;
+
+    private int yn = 0;
+    private int dn = 0;
+
+    private User user = null;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_link);
 
+        session = new Session(AllLinkActivity.this);
+        try {
+            user = session.getUser();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
         updateUi();
 
     }
 
     private void updateUi(){
+
+        your_link_number = (TextView) findViewById(R.id.your_link_number);
+        download_link_number = (TextView) findViewById(R.id.download_link_number);
+
+        for(Link link : user.getLinks()){
+
+            if(link.getAuthor().equals(user.getId()))
+                yn++;
+            else
+                dn++;
+
+        }
+
+        your_link_number.setText(String.valueOf(yn));
+        download_link_number.setText(String.valueOf(dn));
 
         back = (ImageButton) findViewById(R.id.back_to_main);
         back.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +90,8 @@ public class AllLinkActivity extends AppCompatActivity {
         recyclerView.setLayoutAnimation(controller);
         recyclerView.setLayoutManager(new LinearLayoutManager(AllLinkActivity.this));
 
-        linkAdapter = new LinkAdapter(AllLinkActivity.this, createFakeLink());
+        if(user != null)
+             linkAdapter = new LinkAdapter(AllLinkActivity.this, user.getLinks());
         SwipCallback swipCallback = new SwipCallback(AllLinkActivity.this){
 
             @Override
@@ -71,30 +109,4 @@ public class AllLinkActivity extends AppCompatActivity {
         recyclerView.setAdapter(linkAdapter);
     }
 
-    public List<Link> createFakeLink(){
-
-        List<Link> links = new ArrayList<>();
-
-        Link link1 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link2 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link3 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link4 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link5 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link6 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link7 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-        Link link8 = new Link("Android documentation", "documentatio pour les dev android", "Bakarri Potter", "21/10/2001", 0);
-
-
-        links.add(link1);
-        links.add(link2);
-        links.add(link3);
-        links.add(link4);
-        links.add(link5);
-        links.add(link6);
-        links.add(link7);
-        links.add(link8);
-
-        return links;
-
-    }
 }

@@ -62,8 +62,10 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 
         holder.collLogo.setImageResource(logo);
         holder.collTitle.setText(collection.getTitle());
-        String value = "Links " + collection.getLinks().size();
-        holder.collLinkNum.setText(value);
+        if(collection.getLinks() != null){
+            String value = "Links " + collection.getLinks().size();
+            holder.collLinkNum.setText(value);
+        }
 
     }
 
