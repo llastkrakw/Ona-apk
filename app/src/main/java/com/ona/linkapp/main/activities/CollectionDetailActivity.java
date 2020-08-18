@@ -132,7 +132,8 @@ public class CollectionDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newLink = new Intent(CollectionDetailActivity.this, AddLinkActivity.class);
+                Intent newLink = new Intent(CollectionDetailActivity.this, AddLinkToCollectionActivity.class);
+                newLink.putExtra("Collection", collection);
                 startActivity(newLink);
             }
         });

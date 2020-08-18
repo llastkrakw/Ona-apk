@@ -35,7 +35,6 @@ public class Globals {
     public static final String POST_COLLECTIONS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("collections").appendPath("collection").toString();
 
 
-
     /*
      *
      * Users

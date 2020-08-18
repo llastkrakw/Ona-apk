@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.usb.UsbDevice;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -43,10 +44,15 @@ public class Session {
     public User getUser() throws JsonProcessingException {
 
         String userJson = prefs.getString("User", "");
-        User user = mapper.readValue(userJson, User.class);
+        Log.d("Value", userJson);
+        if(!TextUtils.isEmpty(userJson)){
 
-        return user;
+            User user = mapper.readValue(userJson, User.class);
+            return user;
 
+        }
+
+        return null;
     }
 
 }

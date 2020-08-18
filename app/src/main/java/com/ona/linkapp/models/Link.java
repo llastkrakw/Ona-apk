@@ -23,6 +23,7 @@ public class Link extends UrlElement implements Parcelable {
     }
 
     protected Link(Parcel in) {
+        super(in);
         clicked = in.readInt();
         shorten_url = in.readString();
         visibility = in.readByte() != 0;
@@ -91,6 +92,7 @@ public class Link extends UrlElement implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
         parcel.writeInt(clicked);
         parcel.writeString(shorten_url);
         parcel.writeByte((byte) (visibility ? 1 : 0));

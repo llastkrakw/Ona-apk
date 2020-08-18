@@ -66,5 +66,17 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="SearchView">
+        <item name="floatingSearch_backgroundColor">@color/colorPrimaryDark</item>
+        <item name="floatingSearch_viewSearchInputTextColor">@color/textColorWhite</item>
+        <item name="floatingSearch_viewSuggestionItemTextColor">@color/textColorWhite</item>
+        <item name="floatingSearch_hintTextColor">@color/textColorWhite</item>
+        <item name="floatingSearch_dividerColor">@color/textColorWhite</item>
+        <item name="floatingSearch_clearBtnColor">@color/textColorWhite</item>
+        <item name="floatingSearch_leftActionColor">@color/textColorWhite</item>
+        <item name="floatingSearch_menuItemIconColor">@color/textColorWhite</item>
+        <item name="floatingSearch_suggestionRightIconColor">@color/textColorWhite</item>
+        <item name="floatingSearch_actionMenuOverflowColor">@color/textColorWhite</item>
+    </style>
 
 </resources>

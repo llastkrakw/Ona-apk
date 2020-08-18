@@ -12,10 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ona.linkapp.R;
+import com.ona.linkapp.helpers.Session;
 import com.ona.linkapp.main.activities.CollectionDetailActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
+import com.ona.linkapp.models.User;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +33,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
     private List<Collection> collections_helper;
     private Context context;
     private Random random;
+    private Session session;
 
     private final int[] RANDOM_LOGO = {
             R.drawable.ic_random_box1,
@@ -44,6 +48,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
         random = new Random();
         this.collections_helper = new ArrayList<>();
         this.collections_helper.addAll(collections);
+        session = new Session(context);
     }
 
     @NonNull
@@ -113,6 +118,8 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
             Collection collection = collections.get(getAdapterPosition());
             detailsIntent.putExtra("Collection", collection);
             context.startActivity(detailsIntent);
+
+
         }
     }
 

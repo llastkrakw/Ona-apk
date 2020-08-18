@@ -41,10 +41,24 @@ public class  Collection extends UrlElement implements Parcelable {
         this.visibility = visibility;
     }
 
+
     protected Collection(Parcel in) {
         super(in);
-        in.readList(links, Link.class.getClassLoader());
-        visibility = in.readByte() != 0;
+        links = in.createTypedArrayList(Link.CREATOR);
+        byte tmpVisibility = in.readByte();
+        visibility = tmpVisibility == 0 ? null : tmpVisibility == 1;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeTypedList(links);
+        dest.writeByte((byte) (visibility == null ? 0 : visibility ? 1 : 2));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Collection> CREATOR = new Creator<Collection>() {
@@ -80,15 +94,4 @@ public class  Collection extends UrlElement implements Parcelable {
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        super.writeToParcel(parcel, i);
-        parcel.writeList(links);
-        parcel.writeByte((byte) (visibility ? 1 : 0));
-    }
 }

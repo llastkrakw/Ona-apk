@@ -96,6 +96,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
         public void onClick(View view) {
 
             Intent detail = new Intent(context, LinkDetailActivity.class);
+            detail.putExtra("Link", links.get(getAdapterPosition()));
             context.startActivity(detail);
 
         }
