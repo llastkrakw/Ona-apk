@@ -32,16 +32,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/copyright"/>
 
-        <ImageButton
-            android:id="@+id/search_link_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/link_detail_filter"
-            android:src="@drawable/ic_search"
-            android:background="@drawable/white_ripple"
-            android:layout_marginEnd="12dp"
-            android:contentDescription="@string/copyright"/>
 
         <ImageButton
             android:id="@+id/link_detail_filter"
@@ -49,7 +39,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_sorting_options"
+            android:src="@drawable/ic_logo_blanc"
             android:background="@drawable/white_ripple"
             android:contentDescription="@string/copyright"/>
 

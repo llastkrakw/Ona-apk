@@ -222,6 +222,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="12dp"
+                android:background="@drawable/white_ripple"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:clickable="true"
+                android:contentDescription="@string/copyright"
+                android:elevation="12dp"
+                android:focusable="true"
+                android:src="@drawable/ic_scan" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

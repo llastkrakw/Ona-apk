@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,6 +30,12 @@ import com.ona.linkapp.models.User;
 import java.io.IOException;
 import java.util.List;
 
+import app.dinus.com.loadingdrawable.DensityUtil;
+import app.dinus.com.loadingdrawable.LoadingView;
+import app.dinus.com.loadingdrawable.render.LoadingDrawable;
+import app.dinus.com.loadingdrawable.render.LoadingRenderer;
+import app.dinus.com.loadingdrawable.render.circle.jump.SwapLoadingRenderer;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button signIn;
@@ -37,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView userName;
     private TextView password;
     private Session session;
+    private LoadingView loadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         session = new Session(LoginActivity.this);
+        loadingView = (LoadingView) findViewById(R.id.level_view);
 
         updateUi();
     }
@@ -90,6 +99,14 @@ public class LoginActivity extends AppCompatActivity {
         private String pass;
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            loadingView.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
         protected String doInBackground(String... strings) {
 
             try {
@@ -128,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+                        loadingView.setVisibility(View.INVISIBLE);
                         session.setUser(mUser);
                         startActivity(main);
 
@@ -135,6 +153,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                     else {
+                        loadingView.setVisibility(View.INVISIBLE);
                         Toast.makeText(LoginActivity.this, "Access Denied !", Toast.LENGTH_SHORT).show();
                     }
 

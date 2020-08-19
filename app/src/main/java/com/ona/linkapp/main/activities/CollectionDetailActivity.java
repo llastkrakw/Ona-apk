@@ -41,6 +41,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
     private ImageButton back;
     private FloatingActionButton fab;
     private Collection collection;
+    private FloatingActionButton qrCode;
 
     private User user = null;
     private Session session;
@@ -135,6 +136,17 @@ public class CollectionDetailActivity extends AppCompatActivity {
                 Intent newLink = new Intent(CollectionDetailActivity.this, AddLinkToCollectionActivity.class);
                 newLink.putExtra("Collection", collection);
                 startActivity(newLink);
+            }
+        });
+
+        qrCode = (FloatingActionButton) findViewById(R.id.fab_qr);
+
+        qrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qrIntent = new Intent(CollectionDetailActivity.this, QrCodeActivity.class);
+                qrIntent.putExtra("Collection", collection);
+                startActivity(qrIntent);
             }
         });
 

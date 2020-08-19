@@ -83,6 +83,5 @@ public class AddLinkToCollectionActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        finish();
     }
 }

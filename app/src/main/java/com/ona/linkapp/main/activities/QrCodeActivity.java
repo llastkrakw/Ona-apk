@@ -22,6 +22,7 @@ import com.github.sumimakito.awesomeqr.option.color.Color;
 import com.github.sumimakito.awesomeqr.option.logo.Logo;
 import com.ona.linkapp.R;
 import com.ona.linkapp.helpers.ImageResize;
+import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Link;
 
 import java.io.File;
@@ -29,6 +30,7 @@ import java.io.File;
 public class QrCodeActivity extends AppCompatActivity {
 
     private Link link;
+    private Collection collection;
     private ImageView imageView;
     private TextView  title;
 
@@ -41,8 +43,11 @@ public class QrCodeActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.title);
 
         link = getIntent().getParcelableExtra("Link");
+        collection = getIntent().getParcelableExtra("Collection");
         if(link != null)
             title.setText(link.getTitle());
+        if(collection != null)
+            title.setText(collection.getTitle());
 
         // Java
 
@@ -70,7 +75,13 @@ public class QrCodeActivity extends AppCompatActivity {
 
 
         RenderOption renderOption = new RenderOption();
-        renderOption.setContent(link.getUrl()); // content to encode
+
+        if(link != null)
+            renderOption.setContent(link.getUrl()); // content to encode
+        if(collection != null)
+            renderOption.setContent(collection.getUrl()); // content to encode
+
+
         renderOption.setSize(800); // size of the final QR code image
         renderOption.setBorderWidth(20); // width of the empty space around the QR code
         renderOption.setPatternScale(0.35f); // (optional) specify a scale for patterns

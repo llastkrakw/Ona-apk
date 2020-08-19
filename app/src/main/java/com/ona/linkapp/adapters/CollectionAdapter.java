@@ -130,7 +130,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
             collections.addAll(collections_helper);
         } else {
             for (Collection collection : collections_helper) {
-                if (collection.getTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (collection.getTitle().toLowerCase(Locale.getDefault()).contains(charText) || collection.getDescription().toLowerCase(Locale.getDefault()).contains(charText)) {
                     collections.add(collection);
                 }
             }

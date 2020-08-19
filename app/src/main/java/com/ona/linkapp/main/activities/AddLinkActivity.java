@@ -1,5 +1,6 @@
 package com.ona.linkapp.main.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ona.linkapp.R;
 import com.ona.linkapp.datas.online.LinkDAO;
 import com.ona.linkapp.helpers.Session;
@@ -38,6 +40,8 @@ public class AddLinkActivity extends AppCompatActivity {
     private EditText title;
     private EditText description;
     private Button addButton;
+    private FloatingActionButton scan;
+    private int SCAN_RESULT = 10;
 
     private User user = null;
     private Session session;
@@ -65,6 +69,15 @@ public class AddLinkActivity extends AppCompatActivity {
         title = (EditText) findViewById(R.id.title_edt);
         description = (EditText) findViewById(R.id.desc_edt);
         addButton = (Button) findViewById(R.id.save_link);
+        scan = (FloatingActionButton) findViewById(R.id.fab_scan);
+
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent startScan = new Intent(AddLinkActivity.this, ScanActivity.class);
+                startActivityForResult(startScan, SCAN_RESULT);
+            }
+        });
 
         link.addTextChangedListener(new TextWatcher() {
             @Override
@@ -180,6 +193,20 @@ public class AddLinkActivity extends AppCompatActivity {
 
 
             }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == SCAN_RESULT)
+        {
+            if(data != null){
+                String url = data.getStringExtra("URL");
+                link.setText(url);
+            }
+
         }
     }
 }

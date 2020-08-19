@@ -145,5 +145,6 @@
     <string name="email_title">Email</string>
     <string name="nothing_found">Nothing Found !</string>
     <string name="add_link">Add Link</string>
+    <string name="collections">Collections</string>
 
 </resources>

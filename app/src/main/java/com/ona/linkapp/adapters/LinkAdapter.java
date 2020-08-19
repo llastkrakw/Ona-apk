@@ -124,7 +124,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
             links.addAll(links_helper);
         } else {
             for (Link link : links_helper) {
-                if (link.getTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (link.getTitle().toLowerCase(Locale.getDefault()).contains(charText) || link.getDescription().toLowerCase(Locale.getDefault()).contains(charText)) {
                     links.add(link);
                 }
             }

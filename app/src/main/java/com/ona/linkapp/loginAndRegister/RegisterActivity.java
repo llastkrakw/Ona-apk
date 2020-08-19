@@ -23,12 +23,15 @@ import com.ona.linkapp.models.User;
 
 import java.io.IOException;
 
+import app.dinus.com.loadingdrawable.LoadingView;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private Button signUp;
     private EditText username;
     private EditText email;
     private EditText password;
+    private LoadingView loadingView;
 
     private UserDao userDao = new UserDao();
 
@@ -37,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        loadingView = (LoadingView) findViewById(R.id.level_view);
         updateUi();
     }
 
@@ -78,6 +82,14 @@ public class RegisterActivity extends AppCompatActivity {
         private String mName;
         private String mEmail;
         private String mPassword;
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            loadingView.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected String doInBackground(String... strings) {
@@ -127,6 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(login);
+                    loadingView.setVisibility(View.INVISIBLE);
                     Toast.makeText(RegisterActivity.this, "Connect with your new account", Toast.LENGTH_LONG).show();
                     RegisterActivity.this.finish();
                 } catch (JsonProcessingException e) {

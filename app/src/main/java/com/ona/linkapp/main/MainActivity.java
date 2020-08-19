@@ -52,6 +52,7 @@ import com.ona.linkapp.main.activities.AddGroupActivity;
 import com.ona.linkapp.main.activities.AddLinkActivity;
 import com.ona.linkapp.main.activities.AllCollActivity;
 import com.ona.linkapp.main.activities.AllLinkActivity;
+import com.ona.linkapp.main.activities.SearchActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
 import com.ona.linkapp.models.Link;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout nothing_box1;
     private LinearLayout nothing_box2;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ImageButton main_search;
 
     private ImageButton menu;
     private Swipe swipe;
@@ -294,6 +296,16 @@ public class MainActivity extends AppCompatActivity {
 
                 swipeRefreshLayout.setRefreshing(false);
 
+            }
+        });
+
+
+        main_search = (ImageButton) findViewById(R.id.main_search);
+        main_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent search = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(search);
             }
         });
     }
