@@ -75,7 +75,15 @@ public class AddLinkToCollectionAdapter extends RecyclerView.Adapter<AddLinkToCo
 
         holder.randomLogo.setImageResource(logo);
         holder.title.setText(link.getTitle());
-        holder.desc.setText(link.getDescription());
+        CharSequence desc = link.getDescription();
+
+        if(desc.length() > 32){
+            String cuter = desc.subSequence(0, 31).toString() + "..";
+            holder.desc.setText(cuter);
+        }
+        else{
+            holder.desc.setText(desc);
+        }
     }
 
     @Override

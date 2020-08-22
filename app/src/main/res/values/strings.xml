@@ -146,5 +146,14 @@
     <string name="nothing_found">Nothing Found !</string>
     <string name="add_link">Add Link</string>
     <string name="collections">Collections</string>
+    <string name="welcome">Welcome to Ona !</string>
+    <string name="begin_to_fork_collections">Begin to fork collections</string>
+    <string name="resource_type">Resource type</string>
+    <string name="security">Security</string>
+    <string name="type">Type</string>
+    <string name="secured">Secured</string>
+    <string name="web_site_type">Web Site</string>
+    <string name="file_type">File</string>
+    <string name="not_secured">Not Secured</string>
 
 </resources>

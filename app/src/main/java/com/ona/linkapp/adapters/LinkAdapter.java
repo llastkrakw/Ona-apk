@@ -2,9 +2,11 @@ package com.ona.linkapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,7 +66,15 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
 
         holder.randomLogo.setImageResource(logo);
         holder.title.setText(link.getTitle());
-        holder.desc.setText(link.getDescription());
+        CharSequence desc = link.getDescription();
+
+        if(desc.length() > 32){
+            String cuter = desc.subSequence(0, 31).toString() + "..";
+            holder.desc.setText(cuter);
+        }
+        else{
+            holder.desc.setText(desc);
+        }
 
     }
 
@@ -78,6 +88,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView randomLogo;
+        private ImageButton go_to_link;
         private TextView title;
         private TextView desc;
 
@@ -85,8 +96,18 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
             super(itemView);
 
             randomLogo = itemView.findViewById(R.id.link_logo);
+            go_to_link = (ImageButton) itemView.findViewById(R.id.go_to_link);
             title = itemView.findViewById(R.id.link_title);
             desc = itemView.findViewById(R.id.link_desc);
+
+            go_to_link.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Link link = links.get(getAdapterPosition());
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link.getUrl()));
+                    context.startActivity(browserIntent);
+                }
+            });
 
             itemView.setOnClickListener(this);
 

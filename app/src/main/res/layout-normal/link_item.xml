@@ -23,15 +23,16 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:id="@+id/go_to_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_external_link"
-                android:background="@drawable/text_ripple"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/copyright"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/text_ripple"
+                android:contentDescription="@string/copyright"
+                android:src="@drawable/ic_external_link"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/link_logo"

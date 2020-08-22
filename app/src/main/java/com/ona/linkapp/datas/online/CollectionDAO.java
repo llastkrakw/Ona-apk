@@ -41,4 +41,12 @@ public class CollectionDAO {
         return colJson;
 
     }
+
+    public String forkCol(String id, String userId) throws IOException {
+
+        String userJson = repository.post(Uri.parse(Globals.POST_FORK_COLLECTIONS_URL).buildUpon().appendPath(id).appendPath(userId).toString(), "");
+
+        return userJson;
+
+    }
 }

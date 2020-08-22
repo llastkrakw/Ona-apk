@@ -3,8 +3,10 @@ package com.ona.linkapp.splash;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ona.linkapp.R;
@@ -22,6 +24,8 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         session = new Session(SplashScreen.this);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SplashScreen.this);
+
 
         new Handler().postDelayed(new Runnable() {
 
@@ -35,6 +39,8 @@ public class SplashScreen extends AppCompatActivity {
                         Intent i = new Intent(SplashScreen.this, MainActivity.class);
                         startActivity(i);
 
+                        prefs.edit().putBoolean("isFirstSession", false).apply();
+
                         finish();
 
                     }
@@ -42,6 +48,8 @@ public class SplashScreen extends AppCompatActivity {
 
                         Intent i = new Intent(SplashScreen.this, OnboardingActivity.class);
                         startActivity(i);
+
+                        prefs.edit().putBoolean("isFirstSession", true).apply();
 
                         finish();
 

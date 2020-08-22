@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +18,8 @@
         android:roundIcon="@drawable/ic_random_box2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.activities.ScanActivity"/>
+        <activity android:name=".main.activities.ForkCollectionActivity"/>
+        <activity android:name=".main.activities.ScanActivity" />
         <activity android:name=".main.activities.QrCodeActivity" />
         <activity android:name=".main.activities.AddLinkToCollectionActivity" />
         <activity android:name=".loginAndRegister.RegisterActivity" />
@@ -26,7 +27,13 @@
         <activity android:name=".main.activities.SearchActivity" />
         <activity android:name=".main.activities.AddGroupActivity" />
         <activity android:name=".main.activities.AddCollActivity" />
-        <activity android:name=".main.activities.AddLinkActivity" />
+        <activity android:name=".main.activities.AddLinkActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".main.activities.LinkDetailActivity" />
         <activity android:name=".main.activities.CollectionDetailActivity" />
         <activity android:name=".main.activities.AllCollActivity" />

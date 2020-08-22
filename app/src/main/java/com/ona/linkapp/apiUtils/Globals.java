@@ -33,7 +33,7 @@ public class Globals {
 
     public static final String GET_COLLECTIONS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("collections").toString();
     public static final String POST_COLLECTIONS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("collections").appendPath("collection").toString();
-
+    public static final String POST_FORK_COLLECTIONS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("collections").appendPath("fork").toString();
 
     /*
      *

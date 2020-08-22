@@ -11,11 +11,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -52,11 +54,13 @@ import com.ona.linkapp.main.activities.AddGroupActivity;
 import com.ona.linkapp.main.activities.AddLinkActivity;
 import com.ona.linkapp.main.activities.AllCollActivity;
 import com.ona.linkapp.main.activities.AllLinkActivity;
+import com.ona.linkapp.main.activities.ForkCollectionActivity;
 import com.ona.linkapp.main.activities.SearchActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.models.User;
+import com.ona.linkapp.splash.SplashScreen;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -116,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         controller =
                 AnimationUtils.loadLayoutAnimation(MainActivity.this, R.anim.layout_animation_fall_down);
+
         container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
         container.startShimmer();
 
@@ -130,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
         setUi();
         new LinkTask().execute(user.getId());
         new CollectionTask().execute(user.getId());
+
+
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        boolean isFirstSession = prefs.getBoolean("isFirstSession", false);
+
+        if(isFirstSession && user.getCollections().size() == 0 && user.getLinks().size() == 0)
+            makeWelcome();
 
     }
 
@@ -348,6 +360,24 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_group.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         recyclerView_group.setAdapter(adapter);
 
+        TextView username = (TextView) navigationDialog.findViewById(R.id.username);
+        TextView email = (TextView) navigationDialog.findViewById(R.id.email);
+
+        if(user != null){
+            username.setText(user.getUsername());
+            email.setText(user.getEmail());
+        }
+
+        LinearLayout browse = (LinearLayout) navigationDialog.findViewById(R.id.browse);
+
+        browse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent fork = new Intent(MainActivity.this, ForkCollectionActivity.class);
+                startActivity(fork);
+            }
+        });
+
         Objects.requireNonNull(navigationDialog.getWindow()).setGravity(Gravity.START);
         navigationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -355,6 +385,33 @@ public class MainActivity extends AppCompatActivity {
         lp.copyFrom(navigationDialog.getWindow().getAttributes());
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         navigationDialog.getWindow().setAttributes(lp);
+
+        navigationDialog.show();
+
+    }
+
+    private void makeWelcome(){
+
+        final Dialog navigationDialog = new Dialog(MainActivity.this);
+        navigationDialog.setContentView(R.layout.welcome);
+
+        Button fork_collection = navigationDialog.findViewById(R.id.fork);
+
+        fork_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent fork = new Intent(MainActivity.this, ForkCollectionActivity.class);
+                startActivity(fork);
+            }
+        });
+
+        Objects.requireNonNull(navigationDialog.getWindow()).setGravity(Gravity.CENTER);
+        navigationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        /*WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(navigationDialog.getWindow().getAttributes());
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        navigationDialog.getWindow().setAttributes(lp);*/
 
         navigationDialog.show();
 

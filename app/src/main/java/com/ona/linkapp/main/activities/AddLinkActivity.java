@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -33,6 +34,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class AddLinkActivity extends AppCompatActivity {
 
@@ -60,6 +62,16 @@ public class AddLinkActivity extends AppCompatActivity {
         }
 
         updateUi();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle != null){
+            String uri = (String)bundle.get(Intent.EXTRA_TEXT);
+            if(uri != null){
+                 if (Objects.equals(intent.getType(), "text/plain")) {
+                     link.setText(uri);
+                }
+            }
+        }
 
     }
 
