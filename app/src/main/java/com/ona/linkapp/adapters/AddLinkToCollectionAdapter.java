@@ -25,6 +25,7 @@ import com.ona.linkapp.main.activities.CollectionDetailActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.models.User;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class AddLinkToCollectionAdapter extends RecyclerView.Adapter<AddLinkToCollectionAdapter.ViewHolder> {
+public class AddLinkToCollectionAdapter extends RecyclerView.Adapter<AddLinkToCollectionAdapter.ViewHolder> implements StickyRecyclerHeadersAdapter<AddLinkToCollectionAdapter.ViewHolder> {
 
     private Context context;
     private List<Link> links;
@@ -83,6 +84,36 @@ public class AddLinkToCollectionAdapter extends RecyclerView.Adapter<AddLinkToCo
         }
         else{
             holder.desc.setText(desc);
+        }
+    }
+
+    @Override
+    public long getHeaderId(int position) {
+        return position;
+    }
+
+    @Override
+    public ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.link_item, parent, false);
+        return new AddLinkToCollectionAdapter.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindHeaderViewHolder(ViewHolder viewHolder, int i) {
+        Link link =  links.get(i);
+        int next = random.nextInt((3));
+        int logo = RANDOM_LOGO[next];
+
+        viewHolder.randomLogo.setImageResource(logo);
+        viewHolder.title.setText(link.getTitle());
+        CharSequence desc = link.getDescription();
+
+        if(desc.length() > 32){
+            String cuter = desc.subSequence(0, 31).toString() + "..";
+            viewHolder.desc.setText(cuter);
+        }
+        else{
+            viewHolder.desc.setText(desc);
         }
     }
 

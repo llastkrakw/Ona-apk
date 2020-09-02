@@ -11,7 +11,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="4dp"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"

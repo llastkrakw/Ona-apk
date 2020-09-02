@@ -55,6 +55,7 @@ import com.ona.linkapp.main.activities.AddLinkActivity;
 import com.ona.linkapp.main.activities.AllCollActivity;
 import com.ona.linkapp.main.activities.AllLinkActivity;
 import com.ona.linkapp.main.activities.ForkCollectionActivity;
+import com.ona.linkapp.main.activities.ProfileActivity;
 import com.ona.linkapp.main.activities.SearchActivity;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Group;
@@ -175,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
         circularImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent profile = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(profile);
             }
         });
 

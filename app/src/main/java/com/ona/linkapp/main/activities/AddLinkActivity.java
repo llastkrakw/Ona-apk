@@ -1,10 +1,15 @@
 package com.ona.linkapp.main.activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,9 +30,11 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ona.linkapp.R;
 import com.ona.linkapp.datas.online.LinkDAO;
+import com.ona.linkapp.datas.online.ShortenDAO;
 import com.ona.linkapp.helpers.Session;
 import com.ona.linkapp.main.MainActivity;
 import com.ona.linkapp.models.Link;
+import com.ona.linkapp.models.ShortenLink;
 import com.ona.linkapp.models.User;
 
 import java.io.IOException;
@@ -36,11 +43,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
 public class AddLinkActivity extends AppCompatActivity {
 
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
     private EditText link;
     private EditText title;
     private EditText description;
+    private EditText path;
     private Button addButton;
     private FloatingActionButton scan;
     private int SCAN_RESULT = 10;
@@ -48,6 +59,7 @@ public class AddLinkActivity extends AppCompatActivity {
     private User user = null;
     private Session session;
     private LinkDAO linkDAO;
+    private ShortenDAO shortenDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +67,7 @@ public class AddLinkActivity extends AppCompatActivity {
 
         session = new Session(AddLinkActivity.this);
         linkDAO = new LinkDAO();
+        shortenDAO = new ShortenDAO();
         try {
             user = session.getUser();
         } catch (JsonProcessingException e) {
@@ -80,14 +93,21 @@ public class AddLinkActivity extends AppCompatActivity {
         link = (EditText) findViewById(R.id.link);
         title = (EditText) findViewById(R.id.title_edt);
         description = (EditText) findViewById(R.id.desc_edt);
+        path = (EditText) findViewById(R.id.path_edt);
         addButton = (Button) findViewById(R.id.save_link);
         scan = (FloatingActionButton) findViewById(R.id.fab_scan);
 
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent startScan = new Intent(AddLinkActivity.this, ScanActivity.class);
-                startActivityForResult(startScan, SCAN_RESULT);
+
+                if (ContextCompat.checkSelfPermission(AddLinkActivity.this, Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_DENIED){
+                    ActivityCompat.requestPermissions(AddLinkActivity.this, new String[] {Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+                }else {
+                    Intent startScan = new Intent(AddLinkActivity.this, ScanActivity.class);
+                    startActivityForResult(startScan, SCAN_RESULT);
+                }
             }
         });
 
@@ -140,7 +160,7 @@ public class AddLinkActivity extends AppCompatActivity {
 
                 else {
 
-                    new AddLinkTask().execute(title.getText().toString(), description.getText().toString(), link.getText().toString());
+                    new AddLinkTask().execute(title.getText().toString(), description.getText().toString(), link.getText().toString(), path.getText().toString());
 
                 }
 
@@ -154,12 +174,14 @@ public class AddLinkActivity extends AppCompatActivity {
         String url;
         String title;
         String description;
+        String hash;
         @Override
         protected String doInBackground(String... strings) {
 
             title = strings[0];
             description = strings[1];
             url = strings[2];
+            hash = strings[3];
 
             if(user != null){
 
@@ -176,6 +198,26 @@ public class AddLinkActivity extends AppCompatActivity {
 
                     Log.d("value", linkJson);
                     String linkResult = linkDAO.addLink(linkJson);
+
+                    Link result = mapper.readValue(linkResult, Link.class);
+
+                    if(!TextUtils.isEmpty(hash)){
+
+                        SimpleFilterProvider filterProvider2 = new SimpleFilterProvider();
+                        filterProvider2.addFilter("shortFilter",
+                                SimpleBeanPropertyFilter.filterOutAllExcept("hash"));
+
+                        ObjectMapper mapper2 = new ObjectMapper();
+                        mapper2.setFilterProvider(filterProvider2);
+
+                        ShortenLink mShort = new ShortenLink();
+                        mShort.setHash(hash);
+
+                        String mShortString =  mapper2.writeValueAsString(mShort);
+
+                        shortenDAO.addShort(mShortString, result.getId());
+
+                    }
 
                     return linkResult;
                 } catch (IOException e) {
@@ -219,6 +261,20 @@ public class AddLinkActivity extends AppCompatActivity {
                 link.setText(url);
             }
 
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_CAMERA_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent startScan = new Intent(AddLinkActivity.this, ScanActivity.class);
+                startActivityForResult(startScan, SCAN_RESULT);
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

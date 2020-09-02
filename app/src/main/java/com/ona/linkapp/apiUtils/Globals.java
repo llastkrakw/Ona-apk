@@ -45,4 +45,13 @@ public class Globals {
     public static final String POST_USERS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("users").appendPath("user").toString();
     public static final String LOGIN_USERS_URL = Uri.parse(BASE_URL).buildUpon().appendPath("login").toString();
 
+    /*
+     *
+     * Shorten
+     *
+     * */
+
+    public static final String GET_SHORT_URL = Uri.parse(BASE_URL).buildUpon().appendPath("shorts").toString();
+    public static final String POST_SHORT_URL = Uri.parse(BASE_URL).buildUpon().appendPath("shorts").appendPath("short").toString();
+
 }

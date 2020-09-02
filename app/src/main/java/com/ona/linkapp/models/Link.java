@@ -85,6 +85,16 @@ public class Link extends UrlElement implements Parcelable {
         this.visibility = visibility;
     }
 
+    @JsonProperty("shortenUrl")
+    public String getShorten_url() {
+        return shorten_url;
+    }
+
+    @JsonProperty("shortenUrl")
+    public void setShorten_url(String shorten_url) {
+        this.shorten_url = shorten_url;
+    }
+
     @Override
     public int describeContents() {
         return 0;

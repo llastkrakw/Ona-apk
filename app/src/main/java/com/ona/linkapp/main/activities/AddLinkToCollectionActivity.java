@@ -21,6 +21,7 @@ import com.ona.linkapp.helpers.SwipCallback;
 import com.ona.linkapp.models.Collection;
 import com.ona.linkapp.models.Link;
 import com.ona.linkapp.models.User;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 public class AddLinkToCollectionActivity extends AppCompatActivity {
 
@@ -64,6 +65,7 @@ public class AddLinkToCollectionActivity extends AppCompatActivity {
             adapter = new AddLinkToCollectionAdapter(AddLinkToCollectionActivity.this, user.getLinks(),  collection);
 
         recyclerView.setAdapter(adapter);
+        //recyclerView.addItemDecoration(new StickyRecyclerHeadersDecoration(adapter));
 
         searchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
             @Override

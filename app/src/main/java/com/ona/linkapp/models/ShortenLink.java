@@ -3,6 +3,12 @@ package com.ona.linkapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonFilter("shortFilter")
 public class ShortenLink implements Parcelable {
 
     private String id;
@@ -44,34 +50,42 @@ public class ShortenLink implements Parcelable {
         }
     };
 
+    @JsonProperty("url")
     public Link getLink() {
         return link;
     }
 
+    @JsonProperty("url")
     public void setLink(Link link) {
         this.link = link;
     }
 
+    @JsonProperty("hash")
     public String getHash() {
         return hash;
     }
 
+    @JsonProperty("hash")
     public void setHash(String hash) {
         this.hash = hash;
     }
 
+    @JsonProperty("shortenUrl")
     public String getLinkShorten() {
         return linkShorten;
     }
 
+    @JsonProperty("shortenUrl")
     public void setLinkShorten(String linkShorten) {
         this.linkShorten = linkShorten;
     }
 
+    @JsonProperty("_id")
     public String getId() {
         return id;
     }
 
+    @JsonProperty("_id")
     public void setId(String id) {
         this.id = id;
     }

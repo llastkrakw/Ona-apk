@@ -262,6 +262,7 @@
                 android:layout_width="200dp"
                 android:autofillHints="@string/copyright"
                 android:enabled="false"
+                android:focusable="false"
                 android:inputType="text"
                 tools:ignore="LabelFor"
                 android:text="@{Collection.url}"
